@@ -1,0 +1,77 @@
+
+
+
+
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-2 bg-light text-black  d-flex flex-column">
+      <h5 class="text-center my-4">Dashbord-Prestataire</h5>
+      <ul class="nav flex-column">
+
+        <li class="nav-item btn text-start">
+          <a class="nav-link text-black" (click)='ngProjetVisible()'>Nos projets </a>
+        </li>
+        <li class="nav-item btn text-start">
+          <a class="nav-link text-black" (click)='ngHistorieVisible()'>Histories </a>
+        </li>
+        <li class="nav-item btn text-start">
+          <a class="nav-link text-black" (click)='ngAvisVisible()' >Les avis</a>
+        </li>
+      </ul>
+    </nav>
+    <main class="col-10">
+      <div class="bg-light p-3 border-bottom"  style='display:inline-flex;'>
+
+          <div class="row d-flex align-items-center justify-content-between" *ngIf='projetListVisible'>
+              <div class="col">
+                  <h4 class="text-left">Les projets disponibles</h4>
+              </div>
+          </div>
+          <div class="row d-flex align-items-center justify-content-between" *ngIf='historieVisible'>
+            <div class="col">
+                <h4 class="text-left">Tous nos projets</h4>
+            </div>
+        </div>
+          <div class="row d-flex align-items-center justify-content-between" *ngIf='avisVisible' >
+              <div class="col">
+                  <h4 class="text-left">Les avis disponibles</h4>
+              </div>
+          </div> 
+          
+          
+          <div *ngIf="userInfo?.email" class='ms-auto' style="padding-left: 900px;">
+            <div 
+              class="dropdown"
+              (mouseenter)="showDropdown()" 
+              (mouseleave)="hideDropdown()"
+            >
+              <a class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false">
+                <i class="bi bi-person-fill"></i>
+              </a>
+              <span class="dropdown-item">{{ userInfo?.firstName }} {{ userInfo?.lastName }}</span>
+        
+              <!-- Menu de déconnexion -->
+              <ul 
+                class="dropdown-menu show" 
+                *ngIf="isDropdownOpen"
+              >
+                <li>
+                  <button class="dropdown-item" (click)="onLogout()">
+                    <i class="bi bi-power"></i>
+                    <span style="padding-left: 5px;" >Déconnexion</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+    
+
+      </div>
+       <div  *ngIf='projetListVisible'>
+        <app-list-projets/>
+       </div>
+  </main>
+
+
+
+</div>

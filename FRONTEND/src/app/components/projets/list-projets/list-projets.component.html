@@ -1,0 +1,43 @@
+<div class="container-xl mt-4">
+  <!-- Loading State (Optional, if you have a loading indicator) -->
+  <div *ngIf="loading" class="loading-message d-flex flex-column align-items-center justify-content-center">
+    <span class="text-muted fs-5">Chargement...</span>
+  </div>
+
+  <!-- No Data Message -->
+  <div *ngIf="projets.length === 0 && !loading" class="no-data-message d-flex flex-column align-items-center justify-content-center">
+    <img src="assets/no-data.png" alt="Aucune donnée disponible" class="no-data-img mb-3">
+    <span class="mt-2 text-muted fs-5">Aucune autorite disponible</span>
+  </div>
+
+  <!-- Content (Table and Pagination) -->
+  <div *ngIf="projets.length > 0" class="content">
+
+<div class="container">
+
+    <table>
+      <tr>
+        <th>Nom du Projet</th>
+        <th>Type</th>
+        <th>Budget</th>
+        <th>Date de Début</th>
+        <th>Date de Fin</th>
+        <th>Statut</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let projet of projets">
+        <td>{{ projet.nom }}</td>
+        <td>{{ projet.typeProjet }}</td>
+        <td>{{ projet.budget  }}</td>
+        <td>{{ projet.dateDebut }}</td>
+        <td>{{ projet.dateFin  }}</td>
+        <td>{{ projet.statut }}</td>
+        <td>
+         
+          <button >Détails</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+  

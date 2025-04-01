@@ -1,0 +1,86 @@
+
+<form [formGroup]="projetForm" (ngSubmit)="createProjet()">
+    <!-- Nom du projet -->
+    <div class="form-group">
+      <label for="nom">Nom du Projet</label>
+      <input
+        type="text"
+        id="nom"
+        class="form-control"
+        formControlName="nom"
+        placeholder="Entrez le nom du projet"
+      />
+      
+    </div>
+  
+    <!-- Type du projet -->
+    <div class="form-group">
+      <label for="typeProjet">Type de Projet</label>
+      <select id="typeProjet" class="form-control" formControlName="typeProjet">
+        <option value="">Sélectionnez le type de projet</option>
+        <option value="infrastructure">Infrastructure</option>
+        <option value="energie">Énergie</option>
+        <option value="sante">Santé</option>
+        <option value="education">Éducation</option>
+        <option value="transport">Transport</option>
+        <option value="autre">Autre</option>
+      </select>
+      
+    </div>
+  
+    <!-- Budget -->
+    <div class="form-group">
+      <label for="budget">Budget</label>
+      <input
+        type="number"
+        id="budget"
+        class="form-control"
+        formControlName="budget"
+        placeholder="Entrez le budget du projet"
+      />
+      
+    </div>
+  
+    <!-- Date de début -->
+    <div class="form-group">
+      <label for="dateDebut">Date de Début</label>
+      <input
+        type="date"
+        id="dateDebut"
+        class="form-control"
+        formControlName="dateDebut"
+      />
+      
+    </div>
+  
+    <!-- Date de fin -->
+    <div class="form-group">
+      <label for="dateFin">Date de Fin</label>
+      <input
+        type="date"
+        id="dateFin"
+        class="form-control"
+        formControlName="dateFin"
+      />
+    </div>
+  
+    <!-- Statut -->
+    <div class="form-group">
+      <label for="statut">Statut</label>
+      <select id="statut" class="form-control" formControlName="statut">
+        <option value="planifie">Planifié</option>
+        <option value="en_cours">En Cours</option>
+        <option value="termine">Terminé</option>
+      </select>
+    </div>
+  
+
+
+  
+    <!-- Bouton Soumettre -->
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" [disabled]="projetForm.invalid">Créer le Projet</button>
+    </div>
+  </form>
+
+  

@@ -1,0 +1,198 @@
+
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav ">
+          <li class="nav-item">
+              <a class="nav-link nav-icon-text" href="#features">
+                  <span class="nav-text">Plateforme de participation citoyenne</span>
+              </a>
+          </li>
+        </ul>
+  </div>
+ </nav>
+
+ <div class='container'>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <!-- Informations générales -->
+    <fieldset>
+      <legend>Inscription</legend>
+      <div class="form-group">
+        <label for="role">Etes vous ?</label>
+        <select id="role" formControlName="role" class="form-select">
+          <option value="citizen">Citoyen</option>
+          <option value="autority">Autorité publique</option>
+          <option value="supplier">Entreprise prestataire</option>
+        </select>
+        <div *ngIf="registrationForm.get('role')?.invalid && registrationForm.get('role')?.touched">
+          <small class="error">Le rôle est requis</small>
+        </div>
+      </div>
+    </fieldset>
+  
+    <!-- Champs pour tous les rôles -->
+    <fieldset *ngIf="isCitizen()">
+      <div class="form-group">
+        <label for="first_name">Nom</label>
+        <input id="first_name" formControlName="first_name" type="text" placeholder="Nom" />
+        <div *ngIf="registrationForm.get('first_name')?.invalid && registrationForm.get('first_name')?.touched">
+          <small class="error">Le nom est requis</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="last_name">Prénom</label>
+        <input id="last_name" formControlName="last_name" type="text" placeholder="Prénom" />
+        <div *ngIf="registrationForm.get('last_name')?.invalid && registrationForm.get('last_name')?.touched">
+          <small class="error">Le prénom est requis.</small>
+        </div>
+      </div>
+
+      
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" formControlName="email" type="text" placeholder="Email" />
+          <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">
+            <small class="error">L'email est requis</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input id="password" formControlName="password" type="password" placeholder="Mot de passe" />
+          <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
+            <small class="error">Le mot de passe est requis</small>
+          </div>
+        </div>
+
+
+                    
+      <div class="form-group">
+        <label for="phone_number">Numéro de téléphone</label>
+        <input id="phone_number" formControlName="phone_number" type="text" placeholder="Numéro de téléphone" />
+        <div *ngIf="registrationForm.get('phone_number')?.invalid && registrationForm.get('phone_number')?.touched">
+          <small class="error">Le numéro de téléphone est requis</small>
+        </div>
+      </div>
+
+        <div class="form-group">
+          <label for="profession">Profession</label>
+          <input id="profession" formControlName="profession" type="text" placeholder="profession" />
+          <div *ngIf="registrationForm.get('profession')?.invalid && registrationForm.get('profession')?.touched">
+            <small class="error">La profession est requis</small>
+          </div>
+        </div>
+    </fieldset>
+
+    
+  
+    <!-- Champs pour Autorité Publique -->
+    <fieldset *ngIf="isAutority()">
+      <div class="form-group">
+        <label for="name_organization">Nom de l'organisation</label>
+        <input id="name_organization" formControlName="name_organization" type="text" placeholder="Nom de l'organisation" />
+        <div *ngIf="registrationForm.get('name_organization')?.invalid && registrationForm.get('name_organization')?.touched">
+          <small class="error">Le nom de l'organisation est requis</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email de l'autorite</label>
+        <input id="email" formControlName="email" type="text" placeholder="Email" />
+        <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">
+          <small class="error">L'email est requis</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input id="password" formControlName="password" type="password" placeholder="Mot de passe" />
+        <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
+          <small class="error">Le mot de passe est requis</small>
+        </div>
+      </div>
+
+
+                  
+    <div class="form-group">
+      <label for="phone_number">Numéro de téléphone de l'autorite</label>
+      <input id="phone_number" formControlName="phone_number" type="text" placeholder="Numéro de téléphone" />
+      <div *ngIf="registrationForm.get('phone_number')?.invalid && registrationForm.get('phone_number')?.touched">
+        <small class="error">Le numéro de téléphone est requis</small>
+      </div>
+    </div>
+
+    </fieldset>
+  
+    <!-- Champs pour Entreprise Prestataire -->
+    <fieldset *ngIf="isSupplier()">
+      <div class="form-group">
+        <label for="nom_entreprise">Nom de l'entreprise</label>
+        <input id="nom_entreprise" formControlName="nom_entreprise" type="text" placeholder="Nom de l'entreprise" />
+        <div *ngIf="registrationForm.get('nom_entreprise')?.invalid && registrationForm.get('nom_entreprise')?.touched">
+          <small class="error">Le nom de l'entreprise est requis</small>
+        </div>
+      </div>
+  
+  
+
+      <div class="form-group">
+        <label for="email">Email de l'entreprise</label>
+        <input id="email" formControlName="email" type="text" placeholder="Email" />
+        <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">
+          <small class="error">L'email est requis</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input id="password" formControlName="password" type="password" placeholder="Mot de passe" />
+        <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
+          <small class="error">Le mot de passe est requis</small>
+        </div>
+      </div>
+
+
+                  
+    <div class="form-group">
+      <label for="phone_number">Numéro de téléphone de l'entreprise</label>
+      <input id="phone_number" formControlName="phone_number" type="text" placeholder="Numéro de téléphone" />
+      <div *ngIf="registrationForm.get('phone_number')?.invalid && registrationForm.get('phone_number')?.touched">
+        <small class="error">Le numéro de téléphone est requis</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="secteur_activite">Secteur d'activité</label>
+      <input id="secteur_activite" formControlName="secteur_activite" type="text" placeholder="Secteur d'activité" />
+      <div *ngIf="registrationForm.get('secteur_activite')?.invalid && registrationForm.get('secteur_activite')?.touched">
+        <small class="error">Le secteur d'activité est requis</small>
+      </div>
+    </div>
+    </fieldset>
+  
+    <!-- Pièce jointe -->
+    <fieldset>
+      <div class="form-group">
+        <input type="file" (change)="onFileSelected($event)" />
+      </div>
+    </fieldset>
+  
+    <div class="col-auto">
+      <button type="submit" class="btn btn-warning mb-3" >S'inscrire</button>
+    </div>
+  </form>
+  </div>
+  
+
+</body>
+
+
+
+
+
+
+
+
