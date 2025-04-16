@@ -46,20 +46,29 @@ class AutoritesListView(generics.ListAPIView):
     queryset = User.objects.filter(role='autority')  
     serializer_class = UserSerializer
 
-
-
 class AutoriteDetailView(generics.RetrieveAPIView):
     queryset = User.objects.filter(role='autority')
     serializer_class = UserSerializer
     lookup_field = 'id'  
+
+
 
 # Vue pour lister les prestataires 
 class PrestatairesListView(generics.ListAPIView):
     queryset = User.objects.filter(role='supplier')  
     serializer_class = UserSerializer
 
+class PrestatairesDetailView(generics.RetrieveAPIView):
+    queryset = User.objects.filter(role='supplier')
+    serializer_class = UserSerializer
+    lookup_field = 'id' 
+
+
 
 # Vue pour lister les citoyens 
 class CitizensListView(generics.ListAPIView):
     queryset = User.objects.filter(role='citizen')  
     serializer_class = UserSerializer
+
+
+

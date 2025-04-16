@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../../models/user';
-import { ListPrestataireService } from './service/list-prestataire-service';
 import { Router } from '@angular/router';
+import { UserService } from '../../service/service';
 
 @Component({
     selector: 'app-list-prestataire',
@@ -24,7 +24,7 @@ export class ListPrestataireComponent implements OnInit{
   totalPages: number = 0; // Total number of pages
   paginatePrestataires: any[] = []; // Paginated apprenants for display
 
-  constructor(private listAutoriteService:ListPrestataireService,  private router:Router ) { }
+  constructor(private userService:UserService,  private router:Router ) { }
 
   ngOnInit():void{ 
     this.loadPrestataires()
@@ -32,7 +32,7 @@ export class ListPrestataireComponent implements OnInit{
 
   loadPrestataires(): void {
     this.loading = true;
-    this.listAutoriteService.getPrestataires().subscribe((data: any[]) => {
+    this.userService.getPrestataires().subscribe((data: any[]) => {
       this.prestataires = data;
       this.totalPages = Math.ceil(this.prestataires.length / this.size);
       this.updatePaginateprestataires();

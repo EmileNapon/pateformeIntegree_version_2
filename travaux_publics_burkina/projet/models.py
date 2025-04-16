@@ -34,18 +34,8 @@ class Projet(models.Model):
     def __str__(self):
         return self.nom
 
-class Partenaire(models.Model):
-    nom = models.CharField(max_length=255)
-    type = models.CharField(max_length=100, choices=[('Financier', 'Financier'), ('Technique', 'Technique'), ('Logistique', 'Logistique')])
-    contact = models.CharField(max_length=255, blank=True, null=True)
-    def __str__(self):
-        return f"Partenaire de {self.projet.nom}"
+
     
-class ActeursImpliques(models.Model):
-    projet = models.ForeignKey(Projet, related_name='Acteurs', on_delete=models.CASCADE)  # 
-    partenaire = models.ForeignKey(Partenaire, related_name='Partenaire', on_delete=models.CASCADE)  
-    def __str__(self):
-        return f"Partenaire de {self.projet.nom}"
 
 class DetailsProjet(models.Model):
     """Détails spécifiques du projet"""
@@ -63,6 +53,22 @@ class Localisation(models.Model):
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     def __str__(self):
         return f"Localisation de {self.projet.nom}"
+    
+class Partenaire(models.Model):
+    nom = models.CharField(max_length=255)
+    type = models.CharField(max_length=100, choices=[('Financier', 'Financier'), ('Technique', 'Technique'), ('Logistique', 'Logistique')])
+    contact = models.CharField(max_length=255, blank=True, null=True)
+    def __str__(self):
+        return f"Partenaire {self.nom}"
+    
+class ActeursImpliques(models.Model):
+    projet = models.ForeignKey(Projet, related_name='Acteurs', on_delete=models.CASCADE)  # 
+    partenaire = models.ForeignKey(Partenaire, related_name='Partenaire', on_delete=models.CASCADE)  
+    def __str__(self):
+        return f"Partenaire de {self.projet.nom}"
+
+
+
 
 
 class Decaissement(models.Model):

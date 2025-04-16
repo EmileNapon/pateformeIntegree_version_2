@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ListAutoriteService } from './service/list-autorite-service';
 import { Router } from '@angular/router';
 import { User } from '../../../../models/user';
 import { CommonModule } from '@angular/common';
+import { UserService } from '../../service/service';
 
 @Component({
     selector: 'app-list-authorite',
@@ -25,7 +25,7 @@ export class ListAutoriteComponent implements OnInit {
   totalPages: number = 0; // Total number of pages
   paginateAutorites: any[] = []; // Paginated apprenants for display
 
-  constructor(private listAutoriteService:ListAutoriteService,  private route:Router ) { }
+  constructor(private userService:UserService,  private route:Router ) { }
 
   ngOnInit():void{ 
     this.loadAutorite()
@@ -33,7 +33,7 @@ export class ListAutoriteComponent implements OnInit {
 
   loadAutorite(): void {
     this.loading = true;
-    this.listAutoriteService.getAutorite().subscribe((data: any[]) => {
+    this.userService.getAutorite().subscribe((data: any[]) => {
       this.autorite = data;
       this.totalPages = Math.ceil(this.autorite.length / this.size);
       this.updatePaginateAutorites();

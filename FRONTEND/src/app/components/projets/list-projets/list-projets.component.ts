@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProjetService } from '../services/services.service';
 import { Projet } from '../models/models';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-projets',
@@ -17,7 +18,7 @@ export class ListProjetsComponent implements OnInit {
   projetsExpirés: Projet[] = [];
   loading:boolean= false
 
-  constructor(private projetService: ProjetService) { }
+  constructor(private projetService: ProjetService,  private router: Router) { }
 
   ngOnInit(): void {
     this.getProjets();
@@ -32,5 +33,7 @@ export class ListProjetsComponent implements OnInit {
   }
 
 
-
+allerDetail( id: number):void{
+  this.router.navigate([`/plateforme-integree/detail-projet/${id}`])
+  }
 }

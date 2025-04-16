@@ -27,6 +27,7 @@ import { DetailProjetComponent } from './components/projets/detail-projet/detail
 import { DeleteProjetComponent } from './components/projets/delete-projet/delete-projet.component';
 import { CreateProjetComponent } from './components/projets/create-projet/create-projet.component';
 import { EditProjetComponent } from './components/projets/edit-projet/edit-projet.component';
+import { CreatePartenairesComponent } from './components/partenaires/create-partenaires/create-partenaires.component';
 
 
 
@@ -57,6 +58,11 @@ const routes: Routes = [
   {path : 'edit-prestataire', component:EditPrestataireComponent},
   {path : 'detail-prestataire', component:DetailPrestataireComponent},
 
+  {path : 'list-partenaires', component:ListPrestataireComponent},
+  {path : 'create-partenaire', component:CreatePartenairesComponent},
+  {path : 'delete-partenaires', component:DeletePrestataireComponent},
+  {path : 'edit-partenaires', component:EditPrestataireComponent},
+  {path : 'detail-partenaires', component:DetailPrestataireComponent},
 
   {path : 'list-autorites', component:ListAutoriteComponent},
   {path : 'create-autorite', component:CreateAutoriteComponent},
@@ -69,7 +75,7 @@ const routes: Routes = [
   {path : 'create-projet', component:CreateProjetComponent},
   {path : 'delete-projet', component:DeleteProjetComponent},
   {path: 'projet/:updateprojet/update', component: EditProjetComponent},
-  {path : 'detail-projet', component:DetailProjetComponent},
+  {path : 'detail-projet/:id', component:DetailProjetComponent},
 
   {path : 'dashboard-admin', component:AdminDashboardComponent}
   

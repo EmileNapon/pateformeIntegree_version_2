@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CustomTokenObtainPairView, RegisterView, UserDetailView, list_users, AutoritesListView, UpdateUserView,PrestatairesListView, CitizensListView, AutoriteDetailView
+from .views import CustomTokenObtainPairView, RegisterView, UserDetailView, list_users, AutoritesListView, UpdateUserView,PrestatairesListView, CitizensListView, AutoriteDetailView, PrestatairesDetailView
 
 urlpatterns = [
     path('plateforme-integre/login/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
@@ -13,5 +13,6 @@ urlpatterns = [
     path('plateforme-integre/citoyens/', CitizensListView.as_view(), name='etudiant-list'),
 
     path('plateforme-integre/autorites/<int:id>/', AutoriteDetailView.as_view(), name='apprenant-detail'),
+     path('plateforme-integre/prestataires/<int:id>/', PrestatairesDetailView.as_view(), name='etudiant-list'),
 
 ]

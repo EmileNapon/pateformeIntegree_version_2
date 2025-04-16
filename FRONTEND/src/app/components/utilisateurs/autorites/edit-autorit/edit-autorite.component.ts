@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { EditAutoriteService } from './service/edit-autorite.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../../service/service';
 
 @Component({
     selector: 'app-edit-authority',
@@ -21,8 +21,8 @@ export class EditAutoriteComponent implements OnInit{
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router,
-    private editApprenantsService :EditAutoriteService 
+    private router: Router, private userService: UserService
+
   ) 
   {
     this.autoriteForm = this.formBuilder.group({
@@ -42,7 +42,7 @@ export class EditAutoriteComponent implements OnInit{
   }
 
   LoadAutoriteEdit():void{
-    this.editApprenantsService.getAutoriteById(this.autoriteId).subscribe((data) => {
+    this.userService.getAutoriteById(this.autoriteId).subscribe((data) => {
       this.autoriteEdit = data;
       this.filtreLoadAutorite()
     });
@@ -69,7 +69,7 @@ export class EditAutoriteComponent implements OnInit{
       console.log(`${key}: ${value}`);
     });
     
-      this.editApprenantsService.updateAutoritet(this.autoriteId, this.autoriteForm.value).subscribe(() => {
+      this.userService.updateAutorite(this.autoriteId, this.autoriteForm.value).subscribe(() => {
         this.router.navigate(['/plateforme-integree/dashboard-admin/list-autorites']);
       });
     }

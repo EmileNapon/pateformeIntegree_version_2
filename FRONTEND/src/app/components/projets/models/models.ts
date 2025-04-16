@@ -1,5 +1,5 @@
 
-export interface Projet {
+export interface Projet{
     id: number;
     nom: string;
     typeProjet: string;
@@ -10,6 +10,28 @@ export interface Projet {
     user: number; // User ID
   }
   
+  export interface Project1 {
+    id: number;
+    name: string;
+    location: string;
+    progress: number;
+    startDate: string;
+    endDate: string;
+    budget: string;
+    disbursements: string;
+    companies: string[];
+  }
+
+
+  
+  interface DashboardControllerType {
+    sidebarCollapsed: boolean;
+    selectedProject: Project1 | null;
+    projects: Project1[];
+    toggleSidebar: () => void;
+    showProjectDetails: (projectId: number) => void;
+    clearProjectSelection: () => void;
+}
 
 export interface Partenaire {
     id?: number;
