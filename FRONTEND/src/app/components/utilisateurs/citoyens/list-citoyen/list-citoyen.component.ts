@@ -3,17 +3,21 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../../models/user';
 import { ListCitoyenService } from './service/list-citoyen-service';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-list-citoyen',
     templateUrl: './list-citoyen.component.html',
     styleUrls: ['./list-citoyen.component.css'],
     standalone: true,
-    imports:[CommonModule]
+    imports:[CommonModule, FormsModule]
 })
 export class ListCitoyenComponent implements OnInit{
  
-
+  searchTerm: string = '';
+  sortOrder: string = '';
+  citizensActifs:number=0
+  citizensNotActifs:number=0
   citoyens: User[] = [];
   loading:boolean=false
 
@@ -29,12 +33,35 @@ export class ListCitoyenComponent implements OnInit{
     this.loadCitoyens()
   }
 
+  // loadCitoyens(): void {
+  //   this.loading = true;
+  //   this.listCitoyenService.getCitoyens().subscribe((data: any[]) => {
+  //     this.citoyens = data;
+  //     this.totalPages = Math.ceil(this.citoyens.length / this.size);
+  //     this.updatePaginatCitoyens();
+  //     this.loading = false;
+  //   }, () => {
+  //     this.loading = false;
+  //   });
+  // }
+
+
   loadCitoyens(): void {
     this.loading = true;
-    this.listCitoyenService.getCitoyens().subscribe((data: any[]) => {
+    const filters: any = { role: 'citizen' };
+  
+    if (this.searchTerm) filters.search = this.searchTerm;
+    if (this.sortOrder) filters.ordering = this.sortOrder;
+  
+    this.listCitoyenService.getCitoyens(filters).subscribe((data: any[]) => {
       this.citoyens = data;
       this.totalPages = Math.ceil(this.citoyens.length / this.size);
       this.updatePaginatCitoyens();
+  
+      // ✅ Recalcul des totaux visibles
+      this.citizensActifs = this.citoyens.filter(a => a.is_active).length;
+      this.citizensNotActifs = this.citoyens.filter(a => !a.is_active).length;
+  
       this.loading = false;
     }, () => {
       this.loading = false;

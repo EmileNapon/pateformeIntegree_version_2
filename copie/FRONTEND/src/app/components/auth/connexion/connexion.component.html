@@ -1,0 +1,48 @@
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav ">
+            <li class="nav-item">
+                <a class="nav-link nav-icon-text" href="#features">
+                    <span class="nav-text">Plateforme de participation citoyenne</span>
+                </a>
+            </li>
+          </ul>
+    </div>
+   </nav>
+  
+  
+  <div class='container'>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <fieldset >
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" formControlName="email" type="text" placeholder="Email" />
+            <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">
+              <small class="error">Le email est requis.</small>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" formControlName="password" type="text" placeholder="Password" />
+            <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
+              <small class="error">Le pasword est requis.</small>
+            </div>
+          </div>
+        </fieldset> 
+
+        <div class="col-auto">
+          <button type="submit" class="btn btn-warning mb-3">se connecter</button>
+        </div>
+       <br/>
+        <div >
+          <button style='border:none;background-color:#fff' (click)='routerInscription()'> Je n'ai pas de compte </button>
+         </div>
+    </form>
+
+  </div>
+  
+  </body>

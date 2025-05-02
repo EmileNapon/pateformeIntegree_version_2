@@ -83,11 +83,14 @@ initForms():void{
       console.log(`${key}: ${value}`);
     });
     this.userService.registerUser(formData).subscribe(
-      response => console.log('Utilisateur enregistré', response),
+      response => {console.log('Utilisateur enregistré', response),
+      this.router.navigate([`/plateforme-integree/auth`]);
+    },
       
-      error => console.error('Erreur', error)
+      error => console.error('Erreur', error),
+      
     );
-    this.router.navigate([`/plateforme-integree/auth`])
+    
     
   }
 }

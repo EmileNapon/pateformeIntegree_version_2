@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../../../../../models/user';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,11 @@ import { Observable } from 'rxjs';
 export class ListCitoyenService {
 
   constructor(private http:HttpClient){}
+  
+  private apiUrl = environment.apiUrl;
 
-  private apiAutoriteUrl = 'http://127.0.0.1:8000/plateforme-integre/citoyens/';
-
-  getCitoyens(): Observable<User[]> {
-      return this.http.get<User[]>(this.apiAutoriteUrl);   
+  getCitoyens(params: any={}): Observable<User[]> {
+      return this.http.get<User[]>(`${this.apiUrl}/citoyens/`,{params});   
     }
 
     // deleteApprenant(id: number): Observable<User> {

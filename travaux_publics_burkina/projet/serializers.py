@@ -6,6 +6,7 @@ class ProjetSerializer(serializers.ModelSerializer):
         model = Projet
         fields = '__all__'
 
+
 class PartenaireSerializer(serializers.ModelSerializer):
     class Meta:
         model = Partenaire

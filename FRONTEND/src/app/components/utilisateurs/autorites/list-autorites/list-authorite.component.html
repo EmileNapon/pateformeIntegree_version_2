@@ -1,8 +1,50 @@
 <body class="bg-gray-100 font-sans">
   <div class="min-h-screen">
 
+          <!-- Cards -->
+          <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card card-counter bg-primary text-white mb-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6 class="card-title" style='font-size:80%'>Total Autorite</h6>
+                                <h2 class="mb-0" style='font-size:95%'>{{paginateAutorites.length}}</h2>
+                            </div>
+                            <i class="fas fa-user-graduate fa-3x opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-counter bg-success text-white mb-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6 class="card-title" style='font-size:80%'>Actifs</h6>
+                                <h2 class="mb-0"style='font-size:95%'>{{autoritesActifs}}</h2>
+                            </div>
+                            <i class="fas fa-check-circle fa-3x opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-counter bg-warning text-white mb-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6 class="card-title" style='font-size:80%'>Inactifs</h6>
+                                <h2 class="mb-0" style='font-size:95%'>{{autoritesNotActifs}}</h2>
+                            </div>
+                            <i class="fas fa-exclamation-circle fa-3x opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-      <!-- Main Content -->
+       
       <div >
 
           <!-- Users Content -->
@@ -11,12 +53,17 @@
               <div class="bg-white p-4 rounded-lg shadow mb-6 flex justify-between items-center">
                   <div class="relative w-96">
                       <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
-                      <input type="text" placeholder="Rechercher un utilisateur..." class="pl-10 pr-4 py-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <input type="text" placeholder="Rechercher un utilisateur..." class="pl-10 pr-4 py-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" [(ngModel)]="searchTerm" (input)="loadAutorites()">
                   </div>
-                  <div class="flex space-x-3">
-                    <span class="px-4 py-2 border rounded-lg hover:bg-gray-50 flex items-center">
-                      <span>Total: {{ autorite.length }} autorites</span>
-                  </span>
+                  <div class="flex space-x-3"> 
+                    <div class="d-flex align-items-center">
+                        <label for="itemsPerPage" class="me-2 mb-0">Par ordre:</label>
+                        <select id="itemsPerPage" class="form-select w-auto"  [(ngModel)]="sortOrder" (change)="loadAutorites()">
+                            <option value="">Trier par ordre</option>
+                            <option value="name_organization">Nom (A-Z)</option>
+                            <option value="-name_organization">Nom (Z-A)</option>
+                        </select>
+                    </div>
 
                   <div>
                     <label for="pageSize" class="me-2">Items par page:</label>
@@ -49,9 +96,9 @@
                       <div class="px-4 py-3 border-t flex justify-between">
                           <span class="text-sm text-gray-500">Dernière connexion: 2h</span>
                           <div class="flex space-x-2">
-                              <button (click)="allerEdit(autorite.id)" class="text-blue-500 hover:text-blue-700">
-                                  <i class="fas fa-edit"></i>
-                              </button>
+                            <button (click)="allerEdit(autorite.id)" class="text-blue-500 hover:text-blue-700">
+                                <i class="fas fa-edit"></i>
+                            </button>
                               <button class="d-flex" (click)="allerDetail(autorite.id)" class="text-green-500 hover:text-green-700">
                                 <a><i class="bi bi-info-circle"></i></a>
                               </button>

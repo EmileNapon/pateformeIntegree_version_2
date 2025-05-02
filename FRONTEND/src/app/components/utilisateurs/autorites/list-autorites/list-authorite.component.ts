@@ -4,10 +4,13 @@ import { User } from '../../../../models/user';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../service/service';
 
+import { FormsModule } from '@angular/forms';
+import { ListAutoriteService } from './service/list-citoyen-service';
+
 @Component({
     selector: 'app-list-authorite',
     standalone: true,
-    imports:[CommonModule],
+    imports:[CommonModule, FormsModule],
     templateUrl: './list-authorite.component.html',
     styleUrls: ['./list-authorite.component.css'],
 
@@ -15,8 +18,12 @@ import { UserService } from '../../service/service';
 export class ListAutoriteComponent implements OnInit {
 
 
+  searchTerm: string = '';
+  sortOrder: string = '';
+  autoritesActifs:number=0
+  autoritesNotActifs:number=0
 
-  autorite: User[] = [];
+  autorites: User[] = [];
   loading:boolean=false
 
   page: number = 1; // Current page
@@ -25,28 +32,51 @@ export class ListAutoriteComponent implements OnInit {
   totalPages: number = 0; // Total number of pages
   paginateAutorites: any[] = []; // Paginated apprenants for display
 
-  constructor(private userService:UserService,  private route:Router ) { }
+  constructor(private listAutoriteService:ListAutoriteService,  private route:Router ) { }
 
   ngOnInit():void{ 
-    this.loadAutorite()
+    this.loadAutorites()
   }
 
-  loadAutorite(): void {
+  // loadAutorite(): void {
+  //   this.loading = true;
+  //   this.userService.getAutorite().subscribe((data: any[]) => {
+  //     this.autorite = data;
+  //     this.totalPages = Math.ceil(this.autorite.length / this.size);
+  //     this.updatePaginateAutorites();
+  //     this.loading = false;
+  //   }, () => {
+  //     this.loading = false;
+  //   });
+  // }
+
+  loadAutorites(): void {
     this.loading = true;
-    this.userService.getAutorite().subscribe((data: any[]) => {
-      this.autorite = data;
-      this.totalPages = Math.ceil(this.autorite.length / this.size);
+    const filters: any = { role: 'autority' };
+  
+    if (this.searchTerm) filters.search = this.searchTerm;
+    if (this.sortOrder) filters.ordering = this.sortOrder;
+  
+    this.listAutoriteService.getAutorites(filters).subscribe((data: any[]) => {
+      this.autorites = data;
+      this.totalPages = Math.ceil(this.autorites.length / this.size);
       this.updatePaginateAutorites();
+  
+      // ✅ Recalcul des totaux visibles
+      this.autoritesActifs = this.autorites.filter(a => a.is_active).length;
+      this.autoritesNotActifs = this.autorites.filter(a => !a.is_active).length;
+  
       this.loading = false;
     }, () => {
       this.loading = false;
     });
   }
 
+
   updatePaginateAutorites(): void {
     const startIndex = (this.page - 1) * this.size;
     const endIndex = startIndex + this.size;
-    this.paginateAutorites = this.autorite.slice(startIndex, endIndex);
+    this.paginateAutorites = this.autorites.slice(startIndex, endIndex);
   }
 
   nextPage(): void {
@@ -67,7 +97,7 @@ export class ListAutoriteComponent implements OnInit {
     if (this.sizeOptions.includes(newSize)) {
       this.size = newSize;
       this.page = 1; // Reset to first page
-      this.totalPages = Math.ceil(this.autorite.length / this.size);
+      this.totalPages = Math.ceil(this.autorites.length / this.size);
       this.updatePaginateAutorites();
     }
   }
