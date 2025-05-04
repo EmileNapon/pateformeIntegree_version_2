@@ -26,13 +26,15 @@
             ],
             "styles": [
               "src/styles.css",
+              "node_modules/leaflet/dist/leaflet.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
             ],
             "scripts": [
               
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/leaflet/dist/leaflet.js"
             ]
           },
           "configurations": {
@@ -116,6 +118,9 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "96766294-9b2f-402e-87e8-b1e581601af4"
   }
 }
 

@@ -1,0 +1,71 @@
+<div class="container">
+  <h2>Créer un Décaissement</h2>
+
+  <form [formGroup]="decaissementForm" (ngSubmit)="createDecaissement()" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="projet">Projet</label>
+      <select id="projet" class="form-control" formControlName="projet">
+        <option *ngFor="let projet of projets" [value]="projet.id">
+          {{ projet.nom }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="nomEtape">Nom de l'Étape</label>
+      <input
+        type="text"
+        id="nomEtape"
+        class="form-control"
+        formControlName="nomEtape"
+        placeholder="Nom de l'étape"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="montant">Montant</label>
+      <input
+        type="number"
+        id="montant"
+        class="form-control"
+        formControlName="montant"
+        placeholder="Montant du décaissement"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="dateDecaissement">Date de Décaissement</label>
+      <input
+        type="date"
+        id="dateDecaissement"
+        class="form-control"
+        formControlName="dateDecaissement"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        class="form-control"
+        formControlName="description"
+        placeholder="Description"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="livrable">Fichier Livrable</label>
+      <input
+        type="file"
+        id="livrable"
+        class="form-control"
+        (change)="onFileChange($event)"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="decaissementForm.invalid">
+      Ajouter Décaissement
+    </button>
+  </form>
+  
+</div>

@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\vertu\Documents\CONTRAT_OPEN_BURKINA\Implementation\BACKEND\travaux_publics_burkina_env
+set VIRTUAL_ENV=C:\Users\CITADEL\Documents\OpenBurkina\pateformeIntegree_version_2\travaux_publics_burkina\travaux_publics_burkina_env
 
 if not defined PROMPT set PROMPT=$P$G
 

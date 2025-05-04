@@ -8,15 +8,17 @@ import { ListPrestataireComponent } from '../../utilisateurs/prestataires/list-p
 import { ListProjetsComponent } from '../../projets/list-projets/list-projets.component';
 import { CreateProjetComponent } from '../../projets/create-projet/create-projet.component';
 import { AuthService } from '../../../services/connexion-service/connexion.service';
+import { CreateDecaissementComponent } from '../../decaissement/create-decaissement/create-decaissement.component';
 
 @Component({
   selector: 'app-autorite-dashboard',
-  imports: [ReactiveFormsModule, CommonModule, ListPrestataireComponent,ListProjetsComponent,CreateProjetComponent,ListCitoyenComponent],
+  imports: [CreateDecaissementComponent, ReactiveFormsModule, CommonModule, ListPrestataireComponent,ListProjetsComponent,CreateProjetComponent,ListCitoyenComponent],
   templateUrl: './autorite-dashboard.component.html',
   styleUrl: './autorite-dashboard.component.css',
   standalone:true
 })
 export class AutoriteDashboardComponent implements OnInit{
+  CreateDecaissementVisible: boolean = false;
   prestatairesVisible: boolean=false
   citoyenVisible: boolean=false
   projetListVisible: boolean=false
@@ -54,6 +56,7 @@ keepDropdownOpen() {
 
 
 ngPrestatairesVisible():void {
+  this.CreateDecaissementVisible=false
   this.prestatairesVisible=true
   this.citoyenVisible=false
   this.projetListVisible=false
@@ -65,6 +68,7 @@ ngPrestatairesVisible():void {
  }
 
  ngCitoyenVisible():void {
+  this.CreateDecaissementVisible=false
   this.prestatairesVisible=false
   this.citoyenVisible=true
   this.projetListVisible=false
@@ -76,6 +80,7 @@ ngPrestatairesVisible():void {
  }
 
  ngProjetVisible():void {
+  this.CreateDecaissementVisible=false
   this.prestatairesVisible=false
   this.citoyenVisible=false
   this.projetListVisible=true
@@ -86,6 +91,7 @@ ngPrestatairesVisible():void {
  }
 
  ngHistorieVisible():void {
+  this.CreateDecaissementVisible=false
   this.prestatairesVisible=false
   this.citoyenVisible=false
   this.projetListVisible=false
@@ -97,6 +103,7 @@ ngPrestatairesVisible():void {
 
 
  ngAvisVisible():void {
+  this.CreateDecaissementVisible=false
   this.prestatairesVisible=false
   this.citoyenVisible=false
   this.projetListVisible=false
@@ -105,7 +112,10 @@ ngPrestatairesVisible():void {
   this.ButtonCreateProjetVisible ==false
   this.createProjetVisible = false;
  
- }   ngGetCreateProjet(): void{
+ }   
+ 
+ ngGetCreateProjet(): void{
+  this.CreateDecaissementVisible=false
   this.prestatairesVisible=false
   this.citoyenVisible=false
   this.projetListVisible=false

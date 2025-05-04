@@ -7,11 +7,13 @@ import { CommonModule } from '@angular/common';
 import { User } from '../../../models/user';
 import { UserService } from '../../utilisateurs/service/service';
 import { PartenaireService } from '../../partenaires/services/services';
+import { map } from 'rxjs';
+import { MapComponent } from './map/map.component';
 
 @Component({
   selector: 'app-create-projet',
   standalone:true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MapComponent],
   templateUrl: './create-projet.component.html',
   styleUrl: './create-projet.component.css'
 })
@@ -41,6 +43,14 @@ export class CreateProjetComponent implements OnInit {
 
   projetInfosVisibleButton=false
   partenaires:any[]=[]
+
+    onLocationSelected(location: { latitude: number; longitude: number }): void {
+    console.log('Localisation sélectionnée :', location);
+    this.projetFormLocalisation.patchValue({
+      latitude: location.latitude,
+      longitude: location.longitude
+    });
+  }
 
 
   constructor(private projetService: ProjetService, private router: Router, private formBuilder: FormBuilder,
@@ -144,6 +154,7 @@ ngProjetInfosVisible():void{
       nom: ['', [Validators.required, Validators.maxLength(255)]],
       typeProjet: ['', Validators.required],
       budget: [0, [Validators.required, Validators.min(1)]],
+      prestataire: ['', Validators.required],
       dateDebut: ['', Validators.required],
       dateFin: [''],
       statut: ['planifie', Validators.required],

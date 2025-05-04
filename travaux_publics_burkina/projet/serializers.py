@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Projet, Partenaire, DetailsProjet, Localisation, ActeursImpliques, Decaissement, CitizenReport, Notification
+from .models import Livrable, Projet, Partenaire, DetailsProjet, Localisation, ActeursImpliques, Decaissement, CitizenReport, Notification
 
 class ProjetSerializer(serializers.ModelSerializer):
     class Meta:
@@ -29,6 +29,12 @@ class ActeursImpliquesSerializer(serializers.ModelSerializer):
 class DecaissementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Decaissement
+        fields = '__all__'
+
+class LivrableSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Livrable
+
         fields = '__all__'
 
 class CitizenReportSerializer(serializers.ModelSerializer):

@@ -22,6 +22,7 @@ STATUT_PROJET_CHOICES = [
     ('attente_financement', 'En attente de financement'),
 ]
 
+
 class Projet(models.Model):
     """Informations générales du projet"""
     nom = models.CharField(max_length=255, unique=True, verbose_name="Nom du Projet")
@@ -30,11 +31,14 @@ class Projet(models.Model):
     dateDebut = models.DateField(verbose_name="Date de Début")
     dateFin = models.DateField(verbose_name="Date de Fin Prévue", null=True, blank=True)
     statut = models.CharField(max_length=50, choices=STATUT_PROJET_CHOICES, default='planifie', verbose_name="Statut du Projet")
-    user = models.ForeignKey(User, related_name='prestataire', on_delete=models.CASCADE)  # Entreprise prestataire
+    user = models.ForeignKey(User, related_name='prestataire', on_delete=models.CASCADE)
+
+    def budget_restant(self):
+        dernier_decaissement = self.decaissements.order_by('-dateDecaissement').first()
+        return self.budget if not dernier_decaissement else dernier_decaissement.budgetRestant
+
     def __str__(self):
         return self.nom
-
-
     
 
 class DetailsProjet(models.Model):
@@ -74,13 +78,36 @@ class ActeursImpliques(models.Model):
 class Decaissement(models.Model):
     projet = models.ForeignKey(Projet, on_delete=models.CASCADE, related_name="decaissements")
     nomEtape = models.CharField(max_length=100)  # Nom de l'étape (ex. "Phase 1", "Phase 2")
-    montant = models.DecimalField(max_digits=15, decimal_places=2)
+    montant = models.DecimalField(max_digits=15, decimal_places=2)  # Montant du décaissement
     dateDecaissement = models.DateField()
     description = models.TextField(blank=True, null=True)  # Ex: "Paiement tranche 1"
-    actualDeliverables = models.TextField()  # Livrables réels pour cette étape
+    actualDeliverables = models.TextField(blank=True, null=True)  # Livrables réels pour cette étape
+    document = models.FileField(upload_to="livrables/")  # Fichier associé au livrable
+    budgetRestant = models.DecimalField(max_digits=15, decimal_places=2, default=0, editable=False)  # Budget restant après ce décaissement
+
+    def save(self, *args, **kwargs):
+        # Vérifier que le montant est <= au budget restant
+        dernier_decaissement = Decaissement.objects.filter(projet=self.projet).order_by('-dateDecaissement').first()
+        budget_restant_precedent = self.projet.budget if not dernier_decaissement else dernier_decaissement.budgetRestant
+
+        if self.montant > budget_restant_precedent:
+            raise ValueError("Le montant du décaissement ne peut pas dépasser le budget restant.")
+
+        # Calculer le budget restant
+        self.budgetRestant = budget_restant_precedent - self.montant
+
+        super().save(*args, **kwargs)
+
     def __str__(self):
-        return f"Decaissement de {self.projet.nom}"
-    
+        return f"Décaissement de {self.projet.nom} - {self.nomEtape} ({self.montant} FCFA)"
+
+class Livrable(models.Model):
+    decaissement = models.ForeignKey(Decaissement, related_name="livrables", on_delete=models.CASCADE)
+    document = models.FileField(upload_to="livrables/" , default="")  # Fichier associé au livrable
+    description = models.TextField(blank=True, null=True)  # Description du livrable
+
+    def __str__(self):
+        return f"Livrable pour {self.decaissement.nomEtape} ({self.decaissement.projet.nom})"   
 
 class CitizenReport(models.Model):
     project = models.ForeignKey(Projet, related_name='reports', on_delete=models.CASCADE)  # Lien vers le projet

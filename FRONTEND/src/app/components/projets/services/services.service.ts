@@ -14,6 +14,23 @@ private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
+    // Ajouter un décaissement
+  addDecaissement(decaissement: FormData): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/decaissements/`, decaissement);
+  }
+  
+  // Récupérer la liste des décaissements (optionnel, si nécessaire)
+  getDecaissements(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/decaissements/`);
+  }
+
+        getDecaissementsParProjet(projetId: number): Observable<any[]> {
+      return this.http.get<any[]>(`${this.apiUrl}/decaissements/?projet=${projetId}`);
+    }
+    getProjetsAvecDecaissements(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/projets/avec-decaissements/`);
+  }
+
   // Récupérer la liste des projets
   getProjets(): Observable<Projet[]> {
     return this.http.get<Projet[]>(`${this.apiUrl}/projets/`);

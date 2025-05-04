@@ -1,0 +1,41 @@
+<div class="container">
+  <h2>Liste des Décaissements par Projet</h2>
+
+  <!-- Sélection du projet -->
+  <div class="form-group">
+    <label for="projet">Sélectionnez un projet :</label>
+    <select id="projet" class="form-control" [(ngModel)]="projetSelectionne" (change)="loadDecaissements(projetSelectionne)">
+      <option value="" disabled selected>-- Choisir un projet --</option>
+      <option *ngFor="let projet of projets" [value]="projet.id">
+        {{ projet.nom }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Liste des décaissements -->
+  <div *ngIf="projetSelectionne">
+    <h3>Décaissements pour le projet sélectionné</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Nom de l'Étape</th>
+          <th>Montant</th>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Document</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let decaissement of decaissements">
+          <td>{{ decaissement.nomEtape }}</td>
+          <td>{{ decaissement.montant | currency:'XOF' }}</td>
+          <td>{{ decaissement.dateDecaissement }}</td>
+          <td>{{ decaissement.description }}</td>
+          <td>
+            <a *ngIf="decaissement.document" [href]="decaissement.document" target="_blank">Voir le document</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

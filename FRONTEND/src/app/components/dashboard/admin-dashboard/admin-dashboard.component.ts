@@ -11,6 +11,8 @@ import { ListProjetsComponent } from '../../projets/list-projets/list-projets.co
 import { AuthService } from '../../../services/connexion-service/connexion.service';
 import * as bootstrap from 'bootstrap'; // Importer Bootstrap JS
 import { DetailProjetComponent } from '../../projets/detail-projet/detail-projet.component';
+import { CreateDecaissementComponent } from '../../decaissement/create-decaissement/create-decaissement.component';
+import { ListDecaissementComponent } from '../../decaissement/list-decaissement/list-decaissement.component';
 
 
 
@@ -20,7 +22,8 @@ import { DetailProjetComponent } from '../../projets/detail-projet/detail-projet
   imports: [ReactiveFormsModule, CommonModule,
      ListAutoriteComponent, ListProjetsComponent,
      CreateProjetComponent,ListPrestataireComponent,
-     ListCitoyenComponent, DetailProjetComponent],
+     ListCitoyenComponent, DetailProjetComponent,
+     CreateDecaissementComponent, ListDecaissementComponent],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css',
   standalone:true
@@ -28,6 +31,8 @@ import { DetailProjetComponent } from '../../projets/detail-projet/detail-projet
 export class AdminDashboardComponent implements AfterViewInit, OnInit{
   autoritevisible: boolean=false
   prestatairesVisible: boolean=false
+  CreateDecaissementVisible: boolean = false;
+  listDecaissementVisible: boolean = false;
   citoyenVisible: boolean=false
   projetListVisible: boolean=false
   avisVisible: boolean=false
@@ -40,6 +45,7 @@ export class AdminDashboardComponent implements AfterViewInit, OnInit{
 
 
   UtilisateursVisible:boolean =false
+  
 constructor(private authService: AuthService, private router: Router){}
 
 ngOnInit(): void {
@@ -102,8 +108,38 @@ keepDropdownOpen() {
   this.isDropdownOpen = true;
 }
 
+  // Méthode pour afficher le composant ListDecaissement
+  ngListDecaissementVisible(): void {
+    this.listDecaissementVisible = true;
+    this.CreateDecaissementVisible = false;
+    this.vueEnsembeVisible = false;
+    this.autoritevisible = false;
+    this.prestatairesVisible = false;
+    this.citoyenVisible = false;
+    this.projetListVisible = false;
+    this.avisVisible = false;
+    this.ButtonCreateProjetVisible = false;
+    this.createProjetVisible = false;
+    this.detailsProjetVisible = false;
+  }
+
+ngCreateDecaissementVisible(): void {
+  this.listDecaissementVisible = false;
+  this.CreateDecaissementVisible = true;
+  this.vueEnsembeVisible = false;
+  this.autoritevisible = false;
+  this.prestatairesVisible = false;
+  this.citoyenVisible = false;
+  this.projetListVisible = false;
+  this.avisVisible = false;
+  this.ButtonCreateProjetVisible = false;
+  this.createProjetVisible = false;
+  this.detailsProjetVisible = false;
+}
 
 ngVueEnsembeVisible():void{
+  this.listDecaissementVisible = false;
+  this.CreateDecaissementVisible = false;
   this.vueEnsembeVisible=true
   this.autoritevisible=false
   this.prestatairesVisible=false
@@ -116,9 +152,11 @@ ngVueEnsembeVisible():void{
 }
 
 ngAutoriteVisible():void {
- this.vueEnsembeVisible=false
- this.autoritevisible=true
- this.prestatairesVisible=false
+  this.listDecaissementVisible = false;
+  this.CreateDecaissementVisible = false;
+  this.vueEnsembeVisible=false
+  this.autoritevisible=true
+  this.prestatairesVisible=false
  this.citoyenVisible=false
  this.projetListVisible=false
  this.avisVisible=false
@@ -130,6 +168,8 @@ ngAutoriteVisible():void {
 
 
 ngPrestatairesVisible():void {
+  this.listDecaissementVisible = false;
+  this.CreateDecaissementVisible = false;
   this.vueEnsembeVisible=false
   this.autoritevisible=false
   this.prestatairesVisible=true
@@ -144,6 +184,8 @@ ngPrestatairesVisible():void {
  }
 
  ngCitoyenVisible():void {
+  this.listDecaissementVisible = false;
+  this.CreateDecaissementVisible = false;
   this.vueEnsembeVisible=false
   this.autoritevisible=false
   this.prestatairesVisible=false
@@ -157,6 +199,8 @@ ngPrestatairesVisible():void {
  }
 
  ngProjetVisible():void {
+  this.listDecaissementVisible = false;
+  this.CreateDecaissementVisible = false;
   this.vueEnsembeVisible=false
   this.autoritevisible=false
   this.prestatairesVisible=false
@@ -171,6 +215,8 @@ ngPrestatairesVisible():void {
 
 
  ngCreateProjerVisible():void {
+  this.listDecaissementVisible = true;
+  this.CreateDecaissementVisible = false;
   this.vueEnsembeVisible=false
   this.autoritevisible=false
   this.prestatairesVisible=false
@@ -184,6 +230,8 @@ ngPrestatairesVisible():void {
  
 
  ngDetailsProjerVisible():void {
+  this.listDecaissementVisible = true;
+  this.CreateDecaissementVisible = false;
   this.vueEnsembeVisible=false
   this.autoritevisible=false
   this.prestatairesVisible=false

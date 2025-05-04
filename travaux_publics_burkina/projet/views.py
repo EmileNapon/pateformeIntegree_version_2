@@ -6,7 +6,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
+from rest_framework.parsers import MultiPartParser, FormParser
+
+
 from rest_framework.generics import get_object_or_404
+
 
 
 # 📌 Projet - Créer, Lire, Modifier, Supprimer
@@ -105,10 +109,52 @@ class ActeursImpliquesDetails(generics.RetrieveUpdateDestroyAPIView):
 class DecaissementListCreate(generics.ListCreateAPIView):
     queryset = Decaissement.objects.all()
     serializer_class = DecaissementSerializer
+    parser_classes = (MultiPartParser, FormParser)
 
+    def perform_create(self, serializer):
+        """
+        Valider que le montant du décaissement est inférieur ou égal au budget restant.
+        """
+        projet = serializer.validated_data['projet']
+        montant = serializer.validated_data['montant']
+
+        # Récupérer le dernier décaissement pour le projet
+        dernier_decaissement = Decaissement.objects.filter(projet=projet).order_by('-dateDecaissement').first()
+
+        # Calculer le budget restant
+        budget_restant = projet.budget if not dernier_decaissement else dernier_decaissement.budgetRestant
+
+        if montant > budget_restant:
+            raise serializers.ValidationError({
+                'montant': "Le montant du décaissement ne peut pas dépasser le budget restant."
+            })
+
+        # Appeler la méthode parent pour sauvegarder l'objet
+        serializer.save(budgetRestant=budget_restant - montant)
 class DecaissementRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Decaissement.objects.all()
     serializer_class = DecaissementSerializer
+
+    def perform_update(self, serializer):
+        """
+        Valider que le montant mis à jour est inférieur ou égal au budget restant.
+        """
+        projet = serializer.validated_data['projet']
+        montant = serializer.validated_data['montant']
+
+        # Récupérer le dernier décaissement pour le projet (exclure l'objet actuel)
+        dernier_decaissement = Decaissement.objects.filter(projet=projet).exclude(id=self.get_object().id).order_by('-dateDecaissement').first()
+
+        # Calculer le budget restant
+        budget_restant = projet.budget if not dernier_decaissement else dernier_decaissement.budgetRestant
+
+        if montant > budget_restant:
+            raise serializers.ValidationError({
+                'montant': "Le montant du décaissement ne peut pas dépasser le budget restant."
+            })
+
+        # Appeler la méthode parent pour sauvegarder l'objet
+        serializer.save(budgetRestant=budget_restant - montant)
 
 # 📌 Citizen Report - Créer, Lire, Modifier, Supprimer
 class CitizenReportListCreate(generics.ListCreateAPIView):
