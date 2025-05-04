@@ -1,0 +1,152 @@
+body {
+  background-color: #f1f4f8;
+  color: #2c3e50;
+  padding: 20px;
+}
+
+/* Conteneur Principal */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Cartes de Statistiques */
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+}
+
+.stat-card.projects::before {
+  background-color: #27ae60; /* Vert */
+}
+
+.stat-card.completed::before {
+  background-color: #3498db; /* Bleu */
+}
+
+.stat-card.pending::before {
+  background-color: #e67e22; /* Orange */
+}
+
+.stat-card.reports::before {
+  background-color: #e74c3c; /* Rouge */
+}
+
+.stat-card h3 {
+  font-size: 1em;
+  color: #7f8c8d;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.stat-card p {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Liste des Projets */
+.projects-section {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.projects-section h2 {
+  font-size: 1.5em;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.projects-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.projects-table th,
+.projects-table td {
+  padding: 12px;
+  text-align: left;
+  font-size: 0.9em;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.projects-table th {
+  background-color: #34495e;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.projects-table td {
+  color: #2c3e50;
+}
+
+.status {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 0.85em;
+  color: white;
+  background-color: #27ae60; /* Vert pour "planifié" */
+}
+
+.progress-container {
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  height: 8px;
+  width: 80px;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.progress-bar {
+  background-color: #3498db;
+  height: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+      padding: 10px;
+  }
+
+  .stats-cards {
+      grid-template-columns: 1fr;
+  }
+
+  .projects-table th,
+  .projects-table td {
+      padding: 8px;
+      font-size: 0.85em;
+  }
+
+  .projects-table {
+      display: block;
+      overflow-x: auto;
+  }
+}

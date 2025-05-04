@@ -39,7 +39,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     phone_number = models.CharField(max_length=20, blank=True)
     profile_pic = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
     is_verified = models.BooleanField(default=False)
-
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
     # Attributs Citoyen
     profession = models.CharField(max_length=100, blank=True, null=True)
     enabled_notifications = models.BooleanField(default=True)
@@ -53,7 +55,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ["role"]  # 'role' doit être obligatoire lors de la création
-
+    date_inscription=models.DateTimeField(auto_now_add=True, null=True) 
     # Définit le gestionnaire
     objects = UserManager()
 

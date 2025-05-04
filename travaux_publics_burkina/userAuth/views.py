@@ -42,9 +42,9 @@ class UpdateUserView(generics.UpdateAPIView):
         user_id = self.kwargs.get("pk")
         return get_object_or_404(User, pk=user_id)
 # Vue pour lister les autorites 
-class AutoritesListView(generics.ListAPIView):
-    queryset = User.objects.filter(role='autority')  
-    serializer_class = UserSerializer
+# class AutoritesListView(generics.ListAPIView):
+#     queryset = User.objects.filter(role='autority')  
+#     serializer_class = UserSerializer
 
 class AutoriteDetailView(generics.RetrieveAPIView):
     queryset = User.objects.filter(role='autority')
@@ -65,10 +65,41 @@ class PrestatairesDetailView(generics.RetrieveAPIView):
 
 
 
-# Vue pour lister les citoyens 
-class CitizensListView(generics.ListAPIView):
-    queryset = User.objects.filter(role='citizen')  
-    serializer_class = UserSerializer
+# # Vue pour lister les citoyens 
+# class CitizensListView(generics.ListAPIView):
+#     queryset = User.objects.filter(role='citizen')  
+#     serializer_class = UserSerializer
 
+
+from rest_framework import filters
+class CitizensListView(generics.ListAPIView):
+    # Filtrer par rôle 'apprenant'
+    queryset = User.objects.filter(role='citizen')   
+    serializer_class = UserSerializer
+    filter_backends = [filters.OrderingFilter, filters.SearchFilter]
+    filterset_fields = ['is_active'] 
+    search_fields = ['first_name', 'last_name']
+    ordering = ['first_name']  # Par défaut, trier par nom (A-Z)
+
+
+class AutoritesListView(generics.ListAPIView):
+    # Filtrer par rôle 'apprenant'
+    queryset = User.objects.filter(role='autority')   
+    serializer_class = UserSerializer
+    filter_backends = [filters.OrderingFilter, filters.SearchFilter]
+    filterset_fields = ['is_active'] 
+    search_fields = ['name_organization']
+    ordering = ['name_organization']  # Par défaut, trier par nom (A-Z)
+
+
+
+class PrestatairesListView(generics.ListAPIView):
+    # Filtrer par rôle 'apprenant'
+    queryset = User.objects.filter(role='supplier')   
+    serializer_class = UserSerializer
+    filter_backends = [filters.OrderingFilter, filters.SearchFilter]
+    filterset_fields = ['is_active'] 
+    search_fields = ['nom_entreprise']
+    ordering = ['nom_entreprise']  # Par défaut, trier par nom (A-Z)
 
 

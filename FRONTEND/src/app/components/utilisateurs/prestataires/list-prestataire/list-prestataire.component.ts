@@ -3,18 +3,23 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../../models/user';
 import { Router } from '@angular/router';
 import { UserService } from '../../service/service';
+import { ListPrestataireService } from './service/list-prestataire-service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-list-prestataire',
     templateUrl: './list-prestataire.component.html',
     styleUrls: ['./list-prestataire.component.css'],
     standalone: true,
-    imports:[CommonModule]
+    imports:[CommonModule, FormsModule]
 })
 export class ListPrestataireComponent implements OnInit{
   
 
-
+  searchTerm: string = '';
+  sortOrder: string = '';
+  prestatairesActifs:number=0
+  prestatairesNotActifs:number=0
   prestataires: User[] = [];
   loading:boolean=false
 
@@ -24,18 +29,41 @@ export class ListPrestataireComponent implements OnInit{
   totalPages: number = 0; // Total number of pages
   paginatePrestataires: any[] = []; // Paginated apprenants for display
 
-  constructor(private userService:UserService,  private router:Router ) { }
+  constructor(private listPrestataireService:ListPrestataireService,  private router:Router ) { }
 
   ngOnInit():void{ 
     this.loadPrestataires()
   }
 
+  // loadPrestataires(): void {
+  //   this.loading = true;
+  //   this.userService.getPrestataires().subscribe((data: any[]) => {
+  //     this.prestataires = data;
+  //     this.totalPages = Math.ceil(this.prestataires.length / this.size);
+  //     this.updatePaginateprestataires();
+  //     this.loading = false;
+  //   }, () => {
+  //     this.loading = false;
+  //   });
+  // }
+
+
   loadPrestataires(): void {
     this.loading = true;
-    this.userService.getPrestataires().subscribe((data: any[]) => {
+    const filters: any = { role: 'supplier' };
+  
+    if (this.searchTerm) filters.search = this.searchTerm;
+    if (this.sortOrder) filters.ordering = this.sortOrder;
+  
+    this.listPrestataireService.getPrestataire(filters).subscribe((data: any[]) => {
       this.prestataires = data;
       this.totalPages = Math.ceil(this.prestataires.length / this.size);
       this.updatePaginateprestataires();
+  
+      // ✅ Recalcul des totaux visibles
+      this.prestatairesActifs = this.prestataires.filter(a => a.is_active).length;
+      this.prestatairesNotActifs = this.prestataires.filter(a => !a.is_active).length;
+  
       this.loading = false;
     }, () => {
       this.loading = false;

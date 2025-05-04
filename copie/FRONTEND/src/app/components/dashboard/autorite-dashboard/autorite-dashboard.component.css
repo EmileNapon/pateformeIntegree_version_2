@@ -1,0 +1,58 @@
+
+body, html {
+    height: 100%;
+    margin: 0px;
+    padding: 0;
+    background: #e9e9e9;
+    font-family: 'Inter', 'Roboto', 'Arial', sans-serif;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.card {
+    border: none;
+    border-radius: 8px;
+}
+.card-title {
+    font-weight: bold;
+    color: #767474; /* Couleur Bootstrap primaire, ajustez selon vos besoins */
+}
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.col.taille{
+    width: 60%;
+    height: 100%;
+}
+.col.taille1{
+    width: 20%;
+}
+
+.container{
+    padding-left: 205px;
+}
+
+
+.container-lf{
+ padding-left: 350px;
+}

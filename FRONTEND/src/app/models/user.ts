@@ -19,4 +19,6 @@ export interface User {
   name_organization?: string | null;
   nom_entreprise?: string | null;
   secteur_activite?: string | null;
+  is_active?:boolean|null;
+  
 }

@@ -8,7 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'first_name', 'last_name', 'email', 'role', 'phone_number', 'profile_pic', 'is_verified',
             'profession', 'enabled_notifications', 'name_organization',
-            'nom_entreprise', 'secteur_activite', 'password'
+            'nom_entreprise', 'secteur_activite', 'password', 'date_inscription','is_active','is_staff','is_superuser'
         ]
         extra_kwargs = {
             'password': {'write_only': True},  # Le mot de passe ne doit pas être récupéré dans les réponses
@@ -51,26 +51,23 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['nom_entreprise'] = user.nom_entreprise
         token['secteur_activite'] = user.secteur_activite
         token['is_verified'] = user.is_verified
+        token['is_staff'] = user.is_staff
+        token['is_superuser'] = user.is_superuser
+        token['is_active'] = user.is_active
+        token['date_inscription'] = user.date_inscription.isoformat() if user.date_inscription else None
+        if user.profile_pic:
+            token['profile_pic'] = user.profile_pic.url  # Récupération de l'URL de l'image de profil
 
+  
         return token
 
     def validate(self, attrs):
-        email = attrs.get("email")
-        password = attrs.get("password")
-        
-        user = authenticate(email=email, password=password)
-        if not user:
-            raise serializers.ValidationError("Les identifiants sont incorrects.")
-        data = super().validate(attrs)  # Authentifie l'utilisateur et génère les tokens
+        data = super().validate(attrs)
+        user = self.user  # récupéré automatiquement si authentification réussie
 
-        # Récupérer l'utilisateur authentifié
-        user = self.user
+        if not user.is_active:
+            raise serializers.ValidationError("Votre compte est inactif. Veuillez contacter l'administrateur.")
 
-        # Si l'utilisateur est None (authentification échouée), lève une erreur
-        if user is None:
-            raise serializers.ValidationError("L'authentification a échoué.")
-
-        # Ajout des données utilisateur à la réponse du token
         data.update({
             'id': user.id,
             'first_name': user.first_name,
@@ -84,9 +81,14 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
             'name_organization': user.name_organization,
             'nom_entreprise': user.nom_entreprise,
             'secteur_activite': user.secteur_activite,
-            'is_verified': user.is_verified
+            'is_verified': user.is_verified,
+            'is_staff': user.is_staff,
+            'is_superuser': user.is_superuser,
+            'is_active': user.is_active,
+            'date_inscription': user.date_inscription,
         })
         return data
+
 # Serializer pour la mise à jour d'un utilisateur
 class UpdateUserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -95,7 +97,7 @@ class UpdateUserSerializer(serializers.ModelSerializer):
         fields = [
             'first_name', 'last_name', 'role', 'phone_number', 'profile_pic', 'is_verified',
             'profession', 'enabled_notifications', 'name_organization',
-            'nom_entreprise', 'secteur_activite',
+            'nom_entreprise', 'secteur_activite','is_active', 'date_inscription', 'is_superuser'
         ]
         extra_kwargs = {
             'role': {'read_only': True},  # On ne permet pas de changer le rôle

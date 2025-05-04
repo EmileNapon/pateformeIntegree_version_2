@@ -1,0 +1,7 @@
+table {
+    width: 100%;
+    height: 20px; /* Hauteur de l'exemple, ajustez selon vos besoins */
+}
+td {
+    vertical-align: middle; /* Centre verticalement */
+}
