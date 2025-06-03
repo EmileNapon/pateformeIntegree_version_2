@@ -1,0 +1,10 @@
+<form (ngSubmit)="onSubmit()">
+    <div *ngFor="let val of features; let i = index">
+      <input type="number" [(ngModel)]="features[i]" name="feature{{i}}" required>
+    </div>
+    <button type="submit">Prédire</button>
+  </form>
+
+  <div *ngIf="result !== null">
+    <p>Prédiction : {{ result }}</p>
+  </div>

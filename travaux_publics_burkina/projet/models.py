@@ -4,16 +4,6 @@ from userAuth.models import User
 
 from django.db import models
 
-# Liste des types de projets
-TYPE_PROJET_CHOICES = [
-    ('infrastructure', 'Infrastructure'),
-    ('energie', 'Énergie'),
-    ('sante', 'Santé'),
-    ('education', 'Éducation'),
-    ('transport', 'Transport'),
-    ('autre', 'Autre'),
-]
-
 # Statuts possibles du projet
 STATUT_PROJET_CHOICES = [
     ('planifie', 'Planifié'),
@@ -26,12 +16,20 @@ STATUT_PROJET_CHOICES = [
 class Projet(models.Model):
     """Informations générales du projet"""
     nom = models.CharField(max_length=255, unique=True, verbose_name="Nom du Projet")
-    typeProjet = models.CharField(max_length=50, choices=TYPE_PROJET_CHOICES, verbose_name="Type de Projet")
+    typeProjet = models.CharField(max_length=50, default='route', verbose_name="Type de Projet")
     budget = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Budget (FCFA)")
     dateDebut = models.DateField(verbose_name="Date de Début")
     dateFin = models.DateField(verbose_name="Date de Fin Prévue", null=True, blank=True)
     statut = models.CharField(max_length=50, choices=STATUT_PROJET_CHOICES, default='planifie', verbose_name="Statut du Projet")
-    user = models.ForeignKey(User, related_name='prestataire', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='autorite', on_delete=models.CASCADE)
+    prestataire=models.ForeignKey(User, related_name='prestataire', on_delete=models.CASCADE, default='1')  # Entreprise p
+
+    region = models.CharField(max_length=100, verbose_name="Région")
+    latitude = models.DecimalField(max_digits=9, decimal_places=6)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6)
+
+    objectifs = models.TextField(verbose_name="Objectifs du Projet")
+    description = models.TextField(verbose_name="Description Détaillée")
 
     def budget_restant(self):
         dernier_decaissement = self.decaissements.order_by('-dateDecaissement').first()
@@ -39,75 +37,120 @@ class Projet(models.Model):
 
     def __str__(self):
         return self.nom
+
+# from django.db import models
+# from django.contrib.auth.models import User
+
+# STATUT_PROJET_CHOICES = [
+#     ('planifie', 'Planifié'),
+#     ('en_cours', 'En cours'),
+#     ('termine', 'Terminé'),
+#     ('suspendu', 'Suspendu'),
+# ]
+
+# TYPE_TRAVAUX_CHOICES = [
+#     ('rehabilitation', 'Réhabilitation'),
+#     ('construction', 'Construction nouvelle'),
+#     ('bitumage', 'Bitumage'),
+#     ('entretien', 'Entretien'),
+#     ('elargissement', 'Élargissement'),
+# ]
+
+# TYPE_REVETEMENT_CHOICES = [
+#     ('bitume', 'Bitume'),
+#     ('laterite', 'Latérite'),
+#     ('beton', 'Béton'),
+# ]
+
+# class Projet(models.Model):
+#     """Informations générales du projet de route"""
+#     nom = models.CharField(max_length=255, unique=True, verbose_name="Nom du Projet")
+#     code_projet = models.CharField(max_length=100, unique=True, verbose_name="Code du Projet")
+
+#     # Localisation
+#     debut_troncon = models.CharField(max_length=255, verbose_name="Début du Tronçon")
+#     fin_troncon = models.CharField(max_length=255, verbose_name="Fin du Tronçon")
+#     region = models.CharField(max_length=100, verbose_name="Région principale")
+#     latitude = models.DecimalField(max_digits=9, decimal_places=6)
+#     longitude = models.DecimalField(max_digits=9, decimal_places=6)
+
+#     # Informations techniques
+#     type_travaux = models.CharField(max_length=50, choices=TYPE_TRAVAUX_CHOICES)
+#     longueur_troncon = models.DecimalField(max_digits=6, decimal_places=2, help_text="En kilomètres")
+#     largeur_chaussee = models.DecimalField(max_digits=4, decimal_places=2, help_text="En mètres")
+#     dateDebut = models.DateField(verbose_name="Date de Début")
+#     dateFin = models.DateField(verbose_name="Date de Fin Prévue", null=True, blank=True)
+#     type_revetement = models.CharField(max_length=50, choices=TYPE_REVETEMENT_CHOICES)
+#     normes_techniques = models.TextField(verbose_name="Normes Techniques")
+
+#     # Acteurs
+#     maitre_ouvrage = models.CharField(max_length=255, verbose_name="Maître d’Ouvrage")
+#     bureau_controle = models.CharField(max_length=255, verbose_name="Bureau de Contrôle")
+#     bailleurs = models.TextField(verbose_name="Bailleur(s) de Fonds")
+
+#     user = models.ForeignKey(User, related_name='autorite', on_delete=models.CASCADE)
+#     prestataire = models.ForeignKey(User, related_name='prestataire', on_delete=models.CASCADE, default=1)
+
+#     # Budget
+#     budget = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Budget Global (FCFA)")
+#     objectifs = models.TextField(verbose_name="Objectifs du Projet")
+#     description = models.TextField(verbose_name="Description Détaillée")
+#     statut = models.CharField(max_length=50, choices=STATUT_PROJET_CHOICES, default='planifie', verbose_name="Statut")
+
+#     def budget_restant(self):
+#         dernier_decaissement = self.decaissements.order_by('-dateDecaissement').first()
+#         return self.budget if not dernier_decaissement else dernier_decaissement.budgetRestant
+
+#     def __str__(self):
+#         return self.nom
+
     
-
-class DetailsProjet(models.Model):
-    """Détails spécifiques du projet"""
-    projet = models.ForeignKey(Projet, related_name='Details', on_delete=models.CASCADE)  # 
-    objectifs = models.TextField(verbose_name="Objectifs du Projet")
-    description = models.TextField(verbose_name="Description Détaillée")
-    def __str__(self):
-        return f"Détails de {self.projet.nom}"
-
-class Localisation(models.Model):
-    """Localisation du projet"""
-    projet = models.ForeignKey(Projet, related_name='Localisation', on_delete=models.CASCADE)  # 
-    region = models.CharField(max_length=100, verbose_name="Région")
-    latitude = models.DecimalField(max_digits=9, decimal_places=6)
-    longitude = models.DecimalField(max_digits=9, decimal_places=6)
-    def __str__(self):
-        return f"Localisation de {self.projet.nom}"
+# class Partenaire(models.Model):
+#     nom = models.CharField(max_length=255)
+#     type = models.CharField(max_length=100, choices=[('Financier', 'Financier'), ('Technique', 'Technique'), ('Logistique', 'Logistique')])
+#     contact = models.CharField(max_length=255, blank=True, null=True)
+#     def __str__(self):
+#         return f"Partenaire {self.nom}"
     
-class Partenaire(models.Model):
-    nom = models.CharField(max_length=255)
-    type = models.CharField(max_length=100, choices=[('Financier', 'Financier'), ('Technique', 'Technique'), ('Logistique', 'Logistique')])
-    contact = models.CharField(max_length=255, blank=True, null=True)
-    def __str__(self):
-        return f"Partenaire {self.nom}"
-    
-class ActeursImpliques(models.Model):
-    projet = models.ForeignKey(Projet, related_name='Acteurs', on_delete=models.CASCADE)  # 
-    partenaire = models.ForeignKey(Partenaire, related_name='Partenaire', on_delete=models.CASCADE)  
-    def __str__(self):
-        return f"Partenaire de {self.projet.nom}"
-
-
-
-
-
-class Decaissement(models.Model):
-    projet = models.ForeignKey(Projet, on_delete=models.CASCADE, related_name="decaissements")
-    nomEtape = models.CharField(max_length=100)  # Nom de l'étape (ex. "Phase 1", "Phase 2")
-    montant = models.DecimalField(max_digits=15, decimal_places=2)  # Montant du décaissement
-    dateDecaissement = models.DateField()
-    description = models.TextField(blank=True, null=True)  # Ex: "Paiement tranche 1"
-    actualDeliverables = models.TextField(blank=True, null=True)  # Livrables réels pour cette étape
-    document = models.FileField(upload_to="livrables/")  # Fichier associé au livrable
-    budgetRestant = models.DecimalField(max_digits=15, decimal_places=2, default=0, editable=False)  # Budget restant après ce décaissement
-
-    def save(self, *args, **kwargs):
-        # Vérifier que le montant est <= au budget restant
-        dernier_decaissement = Decaissement.objects.filter(projet=self.projet).order_by('-dateDecaissement').first()
-        budget_restant_precedent = self.projet.budget if not dernier_decaissement else dernier_decaissement.budgetRestant
-
-        if self.montant > budget_restant_precedent:
-            raise ValueError("Le montant du décaissement ne peut pas dépasser le budget restant.")
-
-        # Calculer le budget restant
-        self.budgetRestant = budget_restant_precedent - self.montant
-
-        super().save(*args, **kwargs)
+# class ActeursImpliques(models.Model):
+#     projet = models.ForeignKey(Projet, related_name='Acteurs', on_delete=models.CASCADE)  # 
+#     partenaire = models.ForeignKey(Partenaire, related_name='Partenaire', on_delete=models.CASCADE)  
+#     def __str__(self):
+#         return f"Partenaire de {self.projet.nom}"
+class PhaseProjet(models.Model):
+    projet = models.ForeignKey("Projet", on_delete=models.CASCADE, related_name="phases")
+    titre = models.CharField(max_length=100)
+    description = models.TextField(blank=True, null=True)
+    date_debut = models.DateField()
+    date_fin = models.DateField()
+    titre = models.CharField(max_length=100)
+    montant = models.DecimalField(max_digits=15, decimal_places=2, default=60000)  # Montant du décaissement
+    description = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return f"Décaissement de {self.projet.nom} - {self.nomEtape} ({self.montant} FCFA)"
+        return f"{self.titre} ({self.projet.nom})"
 
 class Livrable(models.Model):
-    decaissement = models.ForeignKey(Decaissement, related_name="livrables", on_delete=models.CASCADE)
-    document = models.FileField(upload_to="livrables/" , default="")  # Fichier associé au livrable
-    description = models.TextField(blank=True, null=True)  # Description du livrable
+    phase = models.ForeignKey("PhaseProjet", on_delete=models.CASCADE, related_name="livrables")
+    nom = models.CharField(max_length=200)
+    description = models.TextField(blank=True, null=True)
+    date_remise = models.DateField(null=True, blank=True)
+    fichier = models.FileField(upload_to="livrables/", blank=True, null=True)
 
     def __str__(self):
-        return f"Livrable pour {self.decaissement.nomEtape} ({self.decaissement.projet.nom})"   
+        return self.nom
+
+
+
+
+# class Livrable(models.Model):
+#     etape = models.ForeignKey(PhaseProjet, related_name="livrables", on_delete=models.CASCADE, default=1)
+#     document = models.FileField(upload_to="livrables/" , default="")  # Fichier associé au livrable
+#     description = models.TextField(blank=True, null=True)  # Description du livrable
+
+#     def __str__(self):
+#         return f"Livrable pour {self.decaissement.nomEtape} ({self.decaissement.projet.nom})"   
+
 
 class CitizenReport(models.Model):
     project = models.ForeignKey(Projet, related_name='reports', on_delete=models.CASCADE)  # Lien vers le projet
@@ -131,3 +174,13 @@ class Notification(models.Model):
     def __str__(self):
         return f"Notification pour {self.project.name} le {self.send_date}"
 
+# class EtapePhase(models.Model):
+#     phase = models.ForeignKey(PhaseProjet, on_delete=models.CASCADE, related_name="etapes")
+#     titre = models.CharField(max_length=100)
+#     montant = models.DecimalField(max_digits=15, decimal_places=2, default=60000)  # Montant du décaissement
+#     description = models.TextField(blank=True, null=True)
+#     date_debut = models.DateField()
+#     date_fin = models.DateField()
+
+#     def __str__(self):
+#         return f"{self.titre} - {self.phase.titre} ({self.phase.projet.nom})"

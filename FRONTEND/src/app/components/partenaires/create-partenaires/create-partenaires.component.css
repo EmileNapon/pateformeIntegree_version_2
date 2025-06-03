@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+        
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+}
+.card-shadow {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.input-focus:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+.section-divider {
+    border-top: 2px dashed #e5e7eb;
+    margin: 1.5rem 0;
+}
+
+/* Taille des polices augmentées */
+.form-label {
+    font-size: 1.1rem;
+}
+.form-input {
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+}
+.form-textarea {
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+}
+.form-select {
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+}
+.form-checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+}

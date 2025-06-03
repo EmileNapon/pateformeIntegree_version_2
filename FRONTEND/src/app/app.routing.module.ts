@@ -28,20 +28,44 @@ import { DeleteProjetComponent } from './components/projets/delete-projet/delete
 import { CreateProjetComponent } from './components/projets/create-projet/create-projet.component';
 import { EditProjetComponent } from './components/projets/edit-projet/edit-projet.component';
 import { CreatePartenairesComponent } from './components/partenaires/create-partenaires/create-partenaires.component';
+import { ListDecaissementComponent } from './components/decaissement/list-decaissement/list-decaissement.component';
+import { CreateDecaissementComponent } from './components/decaissement/create-decaissement/create-decaissement.component';
+import { CreateComponent } from './components/calendrier/create/create.component';
+import { CreatevComponent } from './components/v/create/create.component';
+import { ModelKNNClientComponent } from './model-knn-client/model-knn-client.component';
+import { App } from './x/x.component';
+import { DashboardComponent } from './compox/components/dashboard/dashboard.component';
+import { PhaseListComponent } from './compox/components/phase-list/phase-list.component';
+import { PhaseFormComponent } from './compox/components/phase-form/phase-form.component';
+import { PhaseDetailComponent } from './compox/components/phase-detail/phase-detail.component';
+import { TimelineComponent } from './compox/components/timeline/timeline.component';
 
 
 
 
 const routes: Routes = [
-      
 
+
+  { path: '', component: DashboardComponent },
+  { path: 'phases', component: PhaseListComponent },
+  { path: 'phases/new', component: PhaseFormComponent },
+  { path: 'phases/:id', component: PhaseDetailComponent },
+  { path: 'phases/:id/edit', component: PhaseFormComponent },
+  { path: 'timeline', component: TimelineComponent },
+  { path: '**', redirectTo: '' },
+  
+
+  {path : 'x', component:App},
+  {path : 'calendrier1', component:CreatevComponent},
+      
+  {path : 'model-prediction', component:ModelKNNClientComponent},
   
   {path : 'plateforme-integree', component:AppComponent, children:[
   {path : 'home', component:HomeComponent},
   {path : 'auth', component:ConnexionComponent},
   {path : 'sign', component:InscriptionComponent},
 
-
+  
   
   {path : 'dashboard-autorite', component:AutoriteDashboardComponent},
   {path : 'dashboard-prestataire', component:PrestataireDashboardComponent},
@@ -50,7 +74,7 @@ const routes: Routes = [
   {path : 'create-citoyen', component:CreateCitoyenComponent},
   {path : 'delete-citoyen', component:DeleteCitoyenComponent},
   {path : 'edit-citoyen', component:EditCitoyenComponent},
-  {path : 'detail-citoyen', component:DetailCitoyenComponent},
+  {path : 'detail-citoyen/:id_citoyen', component:DetailCitoyenComponent},
 
   {path : 'list-prestataires', component:ListPrestataireComponent},
   {path : 'create-prestataire', component:CreatePrestataireComponent},
@@ -77,7 +101,13 @@ const routes: Routes = [
   {path: 'projet/:updateprojet/update', component: EditProjetComponent},
   {path : 'detail-projet/:id', component:DetailProjetComponent},
 
-  {path : 'dashboard-admin', component:AdminDashboardComponent}
+  {path : 'list-decaissements', component:ListDecaissementComponent },
+  {path : 'create-decaissement', component:CreateDecaissementComponent},
+  {path : 'delete-projet', component:DeleteProjetComponent},
+
+  {path : 'dashboard-admin', component:AdminDashboardComponent},
+  {path : 'calendrier/:id', component:CreateComponent},
+  
   
 
 

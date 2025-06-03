@@ -52,7 +52,7 @@ export class ConnexionComponent implements OnInit {
           this.router.navigate(['/plateforme-integree/home']);
         } 
         else if (response.role === 'autority') {
-          this.router.navigate(['/plateforme-integree/dashboard-autorite']);
+          this.router.navigate(['/plateforme-integree/dashboard-admin']);
         }
         else if (response.role === 'supplier') {
           this.router.navigate(['/plateforme-integree/dashboard-prestataire']);

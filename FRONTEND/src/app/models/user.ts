@@ -20,5 +20,10 @@ export interface User {
   nom_entreprise?: string | null;
   secteur_activite?: string | null;
   is_active?:boolean|null;
+  date_inscription?: Date | null;
+  quartier?: string | null;
+  ville?:string | null;
+  secteur?:string | null;
+
   
 }

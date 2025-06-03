@@ -59,6 +59,7 @@ export class ListAutoriteComponent implements OnInit {
   
     this.listAutoriteService.getAutorites(filters).subscribe((data: any[]) => {
       this.autorites = data;
+      console.log('listes de autorite',this.autorites)
       this.totalPages = Math.ceil(this.autorites.length / this.size);
       this.updatePaginateAutorites();
   
@@ -117,8 +118,17 @@ export class ListAutoriteComponent implements OnInit {
   allerEdit(updateApprenantId:number):void{
     this.route.navigate([`/plateforme-integree/autorites/${updateApprenantId}/update`])
   }
-  onDeleteApprenant(updateApprenantId:number):void{
-    this.route.navigate([`/plateforme-integree/apprenants/${updateApprenantId}/update/`])
+
+  onDeleteAutorite(id: number): void {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cet apprenant ?')) {
+      this.listAutoriteService.deleteAutorite(id).subscribe(() => {
+        this.paginateAutorites = this.paginateAutorites.filter(autorite => autorite.id !== id);
+        this.totalPages = Math.ceil(this.paginateAutorites.length / this.size);
+        this.page = Math.min(this.page, this.totalPages || 1);
+        this.updatePaginateAutorites();
+        this.loadAutorites()
+      });
+    }
   }
 
 }

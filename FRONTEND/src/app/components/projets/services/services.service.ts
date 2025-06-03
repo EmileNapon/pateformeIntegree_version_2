@@ -24,7 +24,7 @@ private apiUrl = environment.apiUrl;
     return this.http.get<any[]>(`${this.apiUrl}/decaissements/`);
   }
 
-        getDecaissementsParProjet(projetId: number): Observable<any[]> {
+  getDecaissementsParProjet(projetId: number): Observable<any[]> {
       return this.http.get<any[]>(`${this.apiUrl}/decaissements/?projet=${projetId}`);
     }
     getProjetsAvecDecaissements(): Observable<any[]> {

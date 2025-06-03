@@ -1,0 +1,269 @@
+
+<body>
+    <div class="d-flex">
+       
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h4><i class="fas fa-user me-2"></i> Détails du Citoyen</h4>
+                <div>
+                    <button class="btn btn-sm btn-primary">
+                        <i class="fas fa-envelope"></i> Contacter
+                    </button>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Profile Column -->
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-header text-center">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile" class="profile-img mb-3">
+                            <h5>{{citoyen.first_name}} {{citoyen.last_name}}</h5>
+                            <p class="mb-0">{{citoyen.is_active}}</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <h6><i class="fas fa-id-card me-2"></i> Informations personnelles</h6>
+                                <hr class="mt-1 mb-2">
+                                <p><strong>Email:</strong> {{citoyen.email}}</p>
+                                <p><strong>Téléphone:</strong> {{citoyen.phone_number}}</p>
+                                <p><strong>Inscrit depuis:</strong> {{citoyen.date_inscription | date: 'MMMM d, y'}} </p>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6><i class="fas fa-map-marker-alt me-2"></i> Localisation</h6>
+                                <hr class="mt-1 mb-2">
+                                <p><strong>Quartier:</strong>{{citoyen.quartier}}</p>
+                                <p><strong>Ville:</strong>{{citoyen.ville}}</p>
+                                <p><strong>Secteur:</strong> {{citoyen.secteur}}</p>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6><i class="fas fa-chart-pie me-2"></i> Participation</h6>
+                                <hr class="mt-1 mb-2">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Signalements:</span>
+                                    <span class="badge badge-report">8</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Commentaires:</span>
+                                    <span class="badge badge-comment">12</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>Projets suivis:</span>
+                                    <span class="badge badge-participation">5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6><i class="fas fa-map-marked-alt me-2"></i> Zone d'intérêt</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="map-container">
+                                <!-- Map placeholder -->
+                                <div class="d-flex align-items-center justify-content-center h-100">
+                                    <div class="text-center text-muted">
+                                        <i class="fas fa-map fa-3x mb-2"></i>
+                                        <p>Carte interactive</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <p class="small text-muted">
+                                    <i class="fas fa-info-circle me-1"></i> 
+                                    Ce citoyen suit principalement les projets dans un rayon de 5km autour de son domicile.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Details Column -->
+                <div class="col-md-8">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6><i class="fas fa-chart-line me-2"></i> Activité récente</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="activity-item">
+                                <div class="d-flex justify-content-between">
+                                    <h6>Nouveau signalement</h6>
+                                    <span class="date">Aujourd'hui, 10:45</span>
+                                </div>
+                                <p>Projet RN5 - Retard dans les travaux entre les bornes kilométriques 12 et 15</p>
+                                <span class="badge bg-danger">En attente</span>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="d-flex justify-content-between">
+                                    <h6>Commentaire ajouté</h6>
+                                    <span class="date">Hier, 16:30</span>
+                                </div>
+                                <p>Projet Avenue Kwame Nkrumah - "Les travaux avancent bien mais le balisage est insuffisant"</p>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="d-flex justify-content-between">
+                                    <h6>Signalement résolu</h6>
+                                    <span class="date">12/06/2023</span>
+                                </div>
+                                <p>Projet Boulevard Mouammar Kadhafi - "Nid-de-poule réparé après signalement"</p>
+                                <span class="badge bg-success">Résolu</span>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="d-flex justify-content-between">
+                                    <h6>Participation à une enquête</h6>
+                                    <span class="date">05/06/2023</span>
+                                </div>
+                                <p>Enquête sur la qualité des travaux dans le secteur 15</p>
+                            </div>
+                            
+                            <button class="btn btn-sm btn-outline-primary mt-2">
+                                <i class="fas fa-history me-1"></i> Voir toute l'activité
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6><i class="fas fa-road me-2"></i> Projets suivis</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Projet</th>
+                                            <th>Statut</th>
+                                            <th>Engagement</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <strong>RN5 - Réhabilitation</strong><br>
+                                                <small class="text-muted">Ouagadougou - Koudougou</small>
+                                            </td>
+                                            <td><span class="badge bg-warning">En cours</span></td>
+                                            <td>
+                                                <div class="progress" style="height: 6px;">
+                                                    <div class="progress-bar bg-success" style="width: 45%"></div>
+                                                </div>
+                                                <small>3 signalements</small>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-secondary">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Avenue Kwame Nkrumah</strong><br>
+                                                <small class="text-muted">Ouagadougou Centre</small>
+                                            </td>
+                                            <td><span class="badge bg-info">Planifié</span></td>
+                                            <td>
+                                                <div class="progress" style="height: 6px;">
+                                                    <div class="progress-bar bg-info" style="width: 15%"></div>
+                                                </div>
+                                                <small>2 commentaires</small>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-secondary">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Boulevard Mouammar Kadhafi</strong><br>
+                                                <small class="text-muted">Ouagadougou Est</small>
+                                            </td>
+                                            <td><span class="badge bg-success">Terminé</span></td>
+                                            <td>
+                                                <div class="progress" style="height: 6px;">
+                                                    <div class="progress-bar bg-success" style="width: 100%"></div>
+                                                </div>
+                                                <small>3 signalements</small>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-secondary">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h6><i class="fas fa-comments me-2"></i> Derniers signalements</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">Problème d'évacuation des eaux</h6>
+                                        <small class="text-muted">10/06/2023</small>
+                                    </div>
+                                    <p class="mb-1">Les eaux stagnantes sur la RN5 créent des risques d'accidents...</p>
+                                    <small><span class="badge bg-warning">En traitement</span></small>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">Matériel abandonné sur chantier</h6>
+                                        <small class="text-muted">05/06/2023</small>
+                                    </div>
+                                    <p class="mb-1">Des matériaux de construction obstruent partiellement la voie...</p>
+                                    <small><span class="badge bg-success">Résolu</span></small>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">Retard dans les travaux</h6>
+                                        <small class="text-muted">28/05/2023</small>
+                                    </div>
+                                    <p class="mb-1">Le tronçon prévu pour livraison en mai n'est pas terminé...</p>
+                                    <small><span class="badge bg-success">Résolu</span></small>
+                                </a>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary mt-3">
+                                <i class="fas fa-list me-1"></i> Voir tous les signalements
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Simple script to toggle sidebar on small screens
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.querySelector('.sidebar');
+            const toggleBtn = document.createElement('button');
+            toggleBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            toggleBtn.className = 'btn btn-sm btn-primary d-md-none position-fixed';
+            toggleBtn.style.top = '10px';
+            toggleBtn.style.left = '10px';
+            toggleBtn.style.zIndex = '1000';
+            toggleBtn.onclick = function() {
+                sidebar.classList.toggle('active');
+            };
+            document.body.appendChild(toggleBtn);
+        });
+    </script>
+</body>

@@ -1,45 +1,235 @@
-<form [formGroup]="FormPartenaire" class="form-container" >
- 
-    <div class="form-group">
-        <label for="nom"><i class="fas fa-project-diagram"></i> Entrer le nom du partenaire</label>
-        <input
-            type="text"
-            id="nom"
-            class="form-control"
-            formControlName="nom"
-            placeholder="Entrez le nom du partenaire"
-        />
-        <span class="error-message" *ngIf="FormPartenaire.get('nom')?.touched && FormPartenaire.get('nom')?.invalid">
-            <span *ngIf="FormPartenaire.get('nom')?.errors?.['required']">Ce champ est requis.</span>
-            <span *ngIf="FormPartenaire.get('nom')?.errors?.['maxlength']">Le nom ne peut pas dépasser 255 caractères.</span>
-        </span>
+
+
+<body class="bg-gray-50">
+    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl w-full space-y-8 bg-white rounded-xl p-10 card-shadow">
+            <!-- Header Section -->
+            <div class="text-center">
+                <div class="gradient-bg text-white py-2 px-4 rounded-lg inline-block mb-3" style="font-size: 2rem;">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h2 class="text-4xl font-extrabold text-gray-900">
+                    Formulaire de Partenaires du Projet
+                </h2>
+                <p class="mt-4 text-lg text-gray-600">
+                    Plateforme de suivi des travaux publics au Burkina Faso
+                </p>
+            </div>
+
+            <!-- Project Info Section -->
+            <div class="bg-blue-50 p-7 rounded-lg">
+                <h3 class="text-xl font-medium text-blue-800 mb-5">
+                    <i class="fas fa-info-circle mr-3"></i> À propos du projet
+                </h3>
+                <p class="text-lg text-gray-700">
+                    Cette plateforme permet aux citoyens de suivre l'évolution des travaux publics en temps réel et garantit la transparence sur la gestion des projets d'infrastructure. Elle offre un suivi des décaissements, des notifications automatiques et un espace de signalement citoyen.
+                </p>
+            </div>
+
+            <!-- Form Section -->
+            <form class="mt-10 space-y-8">
+                <!-- Partner Basic Information -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-building mr-3 text-blue-600"></i> Informations du Partenaire
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label for="partner-name" class="block text-lg font-medium text-gray-700 form-label">Nom du partenaire *</label>
+                            <input type="text" id="partner-name" required class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 input-focus form-input">
+                        </div>
+                        <div>
+                            <label for="partner-type" class="block text-lg font-medium text-gray-700 form-label">Type de partenaire *</label>
+                            <select id="partner-type" required class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 input-focus form-select">
+                                <option value="">Sélectionnez un type</option>
+                                <option value="government">Gouvernement/Autorités locales</option>
+                                <option value="company">Entreprise prestataire</option>
+                                <option value="civil-society">Organisation de la société civile</option>
+                                <option value="citizen-group">Groupe citoyen</option>
+                                <option value="other">Autre</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="contact-person" class="block text-lg font-medium text-gray-700 form-label">Personne de contact *</label>
+                            <input type="text" id="contact-person" required class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 input-focus form-input">
+                        </div>
+                        <div>
+                            <label for="position" class="block text-lg font-medium text-gray-700 form-label">Poste occupé</label>
+                            <input type="text" id="position" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 input-focus form-input">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="section-divider"></div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-address-book mr-3 text-blue-600"></i> Coordonnées
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label for="email" class="block text-lg font-medium text-gray-700 form-label">Email *</label>
+                            <input type="email" id="email" required class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 input-focus form-input">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-lg font-medium text-gray-700 form-label">Téléphone *</label>
+                            <input type="tel" id="phone" required class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 input-focus form-input">
+                        </div>
+                        <div>
+                            <label for="address" class="block text-lg font-medium text-gray-700 form-label">Adresse</label>
+                            <input type="text" id="address" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 input-focus form-input">
+                        </div>
+                        <div>
+                            <label for="city" class="block text-lg font-medium text-gray-700 form-label">Ville</label>
+                            <input type="text" id="city" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 input-focus form-input">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Partner Role -->
+                <div class="section-divider"></div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-tasks mr-3 text-blue-600"></i> Rôle dans le projet
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <label for="project-role" class="block text-lg font-medium text-gray-700 form-label">Rôle principal *</label>
+                            <textarea id="project-role" rows="3" required class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 input-focus form-textarea"></textarea>
+                        </div>
+                        <div>
+                            <label for="responsibilities" class="block text-lg font-medium text-gray-700 form-label">Responsabilités spécifiques</label>
+                            <textarea id="responsibilities" rows="4" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 input-focus form-textarea"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-lg font-medium text-gray-700 form-label">Domaines d'intervention</label>
+                            <div class="mt-3 space-y-3">
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                    <div class="flex items-center">
+                                        <input id="infrastructure" name="domains" type="checkbox" class="form-checkbox text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                        <label for="infrastructure" class="ml-3 block text-lg text-gray-700">Infrastructure</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input id="transparency" name="domains" type="checkbox" class="form-checkbox text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                        <label for="transparency" class="ml-3 block text-lg text-gray-700">Transparence</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input id="monitoring" name="domains" type="checkbox" class="form-checkbox text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                        <label for="monitoring" class="ml-3 block text-lg text-gray-700">Suivi</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input id="communication" name="domains" type="checkbox" class="form-checkbox text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                        <label for="communication" class="ml-3 block text-lg text-gray-700">Communication</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Engagement -->
+                <div class="section-divider"></div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-calendar-check mr-3 text-blue-600"></i> Engagement dans le projet
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label for="start-date" class="block text-lg font-medium text-gray-700 form-label">Date de début de participation</label>
+                            <input type="date" id="start-date" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 input-focus form-input">
+                        </div>
+                        <div>
+                            <label for="end-date" class="block text-lg font-medium text-gray-700 form-label">Date de fin prévue</label>
+                            <input type="date" id="end-date" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 input-focus form-input">
+                        </div>
+                        <div>
+                            <label for="commitment-level" class="block text-lg font-medium text-gray-700 form-label">Niveau d'engagement</label>
+                            <select id="commitment-level" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 input-focus form-select">
+                                <option value="high">Élevé</option>
+                                <option value="medium" selected>Moyen</option>
+                                <option value="low">Faible</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="resources" class="block text-lg font-medium text-gray-700 form-label">Ressources fournies</label>
+                            <input type="text" id="resources" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 input-focus form-input">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="section-divider"></div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-file-alt mr-3 text-blue-600"></i> Informations supplémentaires
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <label for="previous-collaboration" class="block text-lg font-medium text-gray-700 form-label">Collaboration antérieure avec notre organisation</label>
+                            <textarea id="previous-collaboration" rows="3" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 input-focus form-textarea"></textarea>
+                        </div>
+                        <div>
+                            <label for="expectations" class="block text-lg font-medium text-gray-700 form-label">Attentes du partenaire</label>
+                            <textarea id="expectations" rows="4" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 input-focus form-textarea"></textarea>
+                        </div>
+                        <div>
+                            <label for="comments" class="block text-lg font-medium text-gray-700 form-label">Commentaires supplémentaires</label>
+                            <textarea id="comments" rows="4" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 input-focus form-textarea"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms and Submit -->
+                <div class="section-divider"></div>
+                <div class="flex items-start">
+                    <input id="terms" name="terms" type="checkbox" required class="mt-1 form-checkbox text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                    <label for="terms" class="ml-3 block text-lg text-gray-700">
+                        Je confirme que les informations fournies sont exactes et j'accepte les <a href="#" class="text-blue-600 hover:text-blue-800">conditions d'utilisation</a>.
+                    </label>
+                </div>
+
+                <div class="flex justify-between mt-10">
+                    <button type="button" class="py-3 px-6 border border-gray-300 rounded-md shadow-sm text-lg font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        <i class="fas fa-times mr-3"></i> Annuler
+                    </button>
+                    <button type="submit" class="group relative w-1/3 flex justify-center py-3 px-6 border border-transparent text-lg font-medium rounded-md text-white gradient-bg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        <i class="fas fa-paper-plane mr-3"></i> Soumettre
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-  
-          
-            <div class="form-group">
-              <label for="type"><i class="fas fa-list"></i> Type de soutien</label>
-            <select id="type" class="form-control" formControlName="type">
-                <option value="">Sélectionnez le type de soutien</option>
-                <option value="Financier">Financier</option>
-                <option value="Technique">Technique</option>
-                <option value="Logistique">Logistique</option>
-            </select>
-          </div>
-  
-                
-        <div class="form-group">
-          <label for="contact"><i class="fas fa-project-diagram"></i> Entrer le contact</label>
-          <input
-              type="text"
-              id="contact"
-              class="form-control"
-              formControlName="contact"
-              placeholder="le contact"
-          />
-          <span class="error-message" *ngIf="FormPartenaire.get('contact')?.touched && FormPartenaire.get('contact')?.invalid">
-          </span>
-      </div>
-      <div class="form-group">
-        <button type="submit" (click)="createProjetPartenaire()" class="btn btn-primary" [disabled]=" FormPartenaire.invalid">Creer un partenaire</button>
-    </div>
-      </form>
+
+    <script>
+        // Simple form validation before submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const requiredFields = document.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.classList.add('border-red-500');
+                } else {
+                    field.classList.remove('border-red-500');
+                }
+            });
+            
+            if (!document.getElementById('terms').checked) {
+                isValid = false;
+                document.getElementById('terms').nextElementSibling.classList.add('text-red-500');
+            } else {
+                document.getElementById('terms').nextElementSibling.classList.remove('text-red-500');
+            }
+            
+            if (!isValid) {
+                e.preventDefault();
+                alert('Veuillez remplir tous les champs obligatoires et accepter les conditions.');
+            } else {
+                // Form is valid, you can proceed with submission
+                alert('Formulaire soumis avec succès!');
+                // In a real application, you would submit the form data to a server here
+            }
+        });
+    </script>
+</body>

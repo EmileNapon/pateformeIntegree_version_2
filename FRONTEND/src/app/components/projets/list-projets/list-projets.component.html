@@ -31,6 +31,7 @@
                     <th>Domaine du projet</th>
                       <th>Nom du Projet</th>
                       <th>Localisation</th>
+                      <th> Calendrier</th>
                       <th>Statut</th>
                       
                       <th>Actions</th>
@@ -41,7 +42,7 @@
                     <td>{{ projet.typeProjet }}</td>
                     <td>{{ projet.nom }}</td>
                       <td>Ouagadougou - Bobo-Dioulasso</td>
-                      
+                      <td><button (click)='getProjetDetail(projet.id)' class="status">planifier</button></td>
                       <td><span class="status">{{ projet.statut }}</span></td>
                       <td >
                         <button (click)='allerDetail(projet.id)' class="action-btn view-btn" style='padding-left:12px;'><i class="fas fa-eye"></i></button>

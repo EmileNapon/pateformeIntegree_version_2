@@ -21,6 +21,8 @@ export class ListCitoyenComponent implements OnInit{
   citoyens: User[] = [];
   loading:boolean=false
 
+  id=1
+
   page: number = 1; // Current page
   size: number = 5; // Default items per page
   sizeOptions: number[] = [5, 10, 20, 100]; // Page size options
@@ -44,6 +46,7 @@ export class ListCitoyenComponent implements OnInit{
   //     this.loading = false;
   //   });
   // }
+
 
 
   loadCitoyens(): void {
@@ -104,16 +107,27 @@ export class ListCitoyenComponent implements OnInit{
   }
 
 
-
+  onDeleteCitoyen(id: number): void {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cet apprenant ?')) {
+      this.listCitoyenService.deleteCitoyens(id).subscribe(() => {
+        this.paginateCitoyens = this.paginateCitoyens.filter(apprenant => apprenant.id !== id);
+        this.totalPages = Math.ceil(this.paginateCitoyens.length / this.size);
+        this.page = Math.min(this.page, this.totalPages || 1);
+        this.updatePaginatCitoyens();
+        this.loadCitoyens()
+      });
+    }
+  }
 
   allerDetail(apprenantId:number):void{
-    this.router.navigate([`/admin/apprenants/${apprenantId}/detail/`])
+    this.router.navigate([`/plateforme-integree/detail-citoyen/${apprenantId}`])
+    console.log(';;;;;;;;;;;;;;;;;;;;;;;;;;;;')
   }
   allerEdit(updateApprenantId:number):void{
     this.router.navigate([`/admin/apprenants/${updateApprenantId}/update/`])
   }
-  onDeleteApprenant(updateApprenantId:number):void{
-    this.router.navigate([`/admin/apprenants/${updateApprenantId}/update/`])
-  }
+
+
+
 
 }

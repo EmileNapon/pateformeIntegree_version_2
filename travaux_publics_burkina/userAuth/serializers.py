@@ -8,7 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'first_name', 'last_name', 'email', 'role', 'phone_number', 'profile_pic', 'is_verified',
             'profession', 'enabled_notifications', 'name_organization',
-            'nom_entreprise', 'secteur_activite', 'password', 'date_inscription','is_active','is_staff','is_superuser'
+            'nom_entreprise', 'secteur_activite', 'password', 'date_inscription','is_active','is_staff','is_superuser', 'quartier','ville', 'secteur'
         ]
         extra_kwargs = {
             'password': {'write_only': True},  # Le mot de passe ne doit pas être récupéré dans les réponses
@@ -54,6 +54,10 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['is_staff'] = user.is_staff
         token['is_superuser'] = user.is_superuser
         token['is_active'] = user.is_active
+        token['quartier'] = user.quartier
+        token['ville'] = user.ville
+        token['secteur'] = user.secteur
+        
         token['date_inscription'] = user.date_inscription.isoformat() if user.date_inscription else None
         if user.profile_pic:
             token['profile_pic'] = user.profile_pic.url  # Récupération de l'URL de l'image de profil
@@ -85,6 +89,9 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
             'is_staff': user.is_staff,
             'is_superuser': user.is_superuser,
             'is_active': user.is_active,
+            'secteur': user.secteur,
+            'ville': user.ville,
+            'quartier': user.quartier,
             'date_inscription': user.date_inscription,
         })
         return data
@@ -97,7 +104,7 @@ class UpdateUserSerializer(serializers.ModelSerializer):
         fields = [
             'first_name', 'last_name', 'role', 'phone_number', 'profile_pic', 'is_verified',
             'profession', 'enabled_notifications', 'name_organization',
-            'nom_entreprise', 'secteur_activite','is_active', 'date_inscription', 'is_superuser'
+            'nom_entreprise', 'secteur_activite','is_active', 'date_inscription', 'is_superuser', 'quartier','ville', 'secteur'
         ]
         extra_kwargs = {
             'role': {'read_only': True},  # On ne permet pas de changer le rôle

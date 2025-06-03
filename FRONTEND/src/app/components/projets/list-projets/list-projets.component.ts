@@ -32,6 +32,10 @@ export class ListProjetsComponent implements OnInit {
     });
   }
 
+  getProjetDetail( id: number):void{
+    this.router.navigate([`/plateforme-integree/calendrier/${id}`])
+    }
+
 
 allerDetail( id: number):void{
   this.router.navigate([`/plateforme-integree/detail-projet/${id}`])

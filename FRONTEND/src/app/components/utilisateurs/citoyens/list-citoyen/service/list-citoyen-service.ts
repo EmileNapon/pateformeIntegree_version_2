@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../../../../../models/user';
 import { Observable } from 'rxjs';
@@ -9,23 +9,20 @@ import { environment } from '../../../../../../environments/environment.prod';
 })
 export class ListCitoyenService {
 
-  constructor(private http:HttpClient){}
-  
+  constructor(private http: HttpClient) {}
+
   private apiUrl = environment.apiUrl;
 
-  getCitoyens(params: any={}): Observable<User[]> {
-      return this.http.get<User[]>(`${this.apiUrl}/citoyens/`,{params});   
-    }
+  getCitoyens(params: any = {}): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/citoyens/`, { params });
+  }
 
-    // deleteApprenant(id: number): Observable<User> {
-    //   return this.http.delete(`${this.apiUrldeleteApprenant}/users/delete/${id}/`);
-    // }
+  deleteCitoyens(id: number): Observable<any> {
+    const token = localStorage.getItem('token'); // ou sessionStorage
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${token}`
+    });
 
-    // getApprenantsPaginated(page: number, size: number): Observable<User[]> {
-    //   const url = `${this.apiUrl}?page=${page}&size=${size}`;
-    //   return this.http.get<User[]>(url)
-    // }
-    
-
-
+    return this.http.delete(`${this.apiUrl}/users/delete/${id}/`, { headers });
+  }
 }

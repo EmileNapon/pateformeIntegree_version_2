@@ -63,6 +63,10 @@ class PrestatairesDetailView(generics.RetrieveAPIView):
     serializer_class = UserSerializer
     lookup_field = 'id' 
 
+class CitoyenDetailView(generics.RetrieveAPIView):
+    queryset = User.objects.filter(role='citizen')
+    serializer_class = UserSerializer
+    lookup_field = 'id' 
 
 
 # # Vue pour lister les citoyens 
@@ -103,3 +107,10 @@ class PrestatairesListView(generics.ListAPIView):
     ordering = ['nom_entreprise']  # Par défaut, trier par nom (A-Z)
 
 
+# Vue pour la suppression d'un utilisateur
+class DeleteUserView(generics.DestroyAPIView):
+    queryset = User.objects.all()
+    # permission_classes = [IsAuthenticated]  
+    def get_object(self):
+        user_id = self.kwargs.get("pk")
+        return get_object_or_404(User, pk=user_id)

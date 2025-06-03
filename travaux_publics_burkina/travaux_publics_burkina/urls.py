@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('userAuth.urls')),
      path('',include('projet.url')),
+    path('api/', include('bryance.urls')),
 ]
 
 

@@ -1,0 +1,480 @@
+
+    <div class="container py-5">
+        <!-- Project Header -->
+        <div class="project-header p-4 mb-4">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="mb-1">Construction de la Route Régionale RN5</h1>
+                    <div class="d-flex align-items-center flex-wrap gap-2 mb-3">
+                        <span class="status-badge status-en_cours">
+                            <i class="fas fa-spinner me-1"></i> En cours
+                        </span>
+                        <span class="text-white-50">
+                            <i class="far fa-calendar-alt me-1"></i> 15/03/2023 - 30/11/2023
+                        </span>
+                        <span class="text-white-50">
+                            <i class="fas fa-map-marker-alt me-1"></i> Région de l'Adamaoua
+                        </span>
+                    </div>
+                    <p class="text-white mb-0">Projet de construction d'une route de 45km reliant les villes de Ngaoundéré et Meiganga pour faciliter le transport des marchandises et des personnes.</p>
+                </div>
+                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                    <div class="bg-white text-dark p-3 rounded d-inline-block">
+                        <h5 class="mb-1">Budget Total</h5>
+                        <h3 class="mb-0 text-primary">2,450,000,000 FCFA</h3>
+                        <div class="progress mt-2 budget-progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <small class="text-muted">65% du budget utilisé</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="row">
+            <!-- Left Column -->
+            <div class="col-lg-8">
+                <!-- Navigation Tabs -->
+                <ul class="nav nav-pills mb-4" id="projectTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="timeline-tab" data-bs-toggle="pill" data-bs-target="#timeline" type="button" role="tab">Calendrier</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="documents-tab" data-bs-toggle="pill" data-bs-target="#documents" type="button" role="tab">Documents</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="reports-tab" data-bs-toggle="pill" data-bs-target="#reports" type="button" role="tab">Signalements</button>
+                    </li>
+                </ul>
+
+                <!-- Tab Content -->
+                <div class="tab-content" id="projectTabsContent">
+                    <!-- Timeline Tab -->
+                    <div class="tab-pane fade show active" id="timeline" role="tabpanel">
+                        <h4 class="mb-4"><i class="fas fa-calendar-alt me-2"></i>Calendrier de Réalisation</h4>
+                        
+                        <div class="timeline">
+                            <!-- Phase 1 -->
+                            <div class="timeline-item">
+                                <div class="timeline-dot bg-primary">
+                                    <i class="fas fa-flag"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="mb-0">Phase 1: Préparation du terrain</h5>
+                                        <span class="badge bg-primary">Terminé</span>
+                                    </div>
+                                    <div class="d-flex flex-wrap gap-2 mb-3">
+                                        <span class="text-muted"><i class="far fa-calendar me-1"></i> 15/03/2023 - 30/04/2023</span>
+                                        <span class="text-muted"><i class="fas fa-money-bill-wave me-1"></i> 450,000,000 FCFA</span>
+                                    </div>
+                                    <p>Déblaiement du terrain, délimitation de la zone de construction et installation du chantier. Cette phase incluait également la mise en place des mesures de sécurité pour les travailleurs.</p>
+                                    
+                                    <div class="accordion mt-3" id="phase1Accordion">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#phase1Details">
+                                                    Détails des livrables
+                                                </button>
+                                            </h2>
+                                            <div id="phase1Details" class="accordion-collapse collapse" data-bs-parent="#phase1Accordion">
+                                                <div class="accordion-body">
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            <span>Rapport d'étude géotechnique</span>
+                                                            <a href="#" class="badge bg-primary rounded-pill"><i class="fas fa-download me-1"></i>Télécharger</a>
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            <span>Plan de sécurité du chantier</span>
+                                                            <a href="#" class="badge bg-primary rounded-pill"><i class="fas fa-download me-1"></i>Télécharger</a>
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            <span>Photos du terrain préparé</span>
+                                                            <a href="#" class="badge bg-primary rounded-pill"><i class="fas fa-download me-1"></i>Télécharger</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Phase 2 -->
+                            <div class="timeline-item">
+                                <div class="timeline-dot bg-success">
+                                    <i class="fas fa-road"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="mb-0">Phase 2: Construction de la chaussée</h5>
+                                        <span class="badge bg-success">En cours</span>
+                                    </div>
+                                    <div class="d-flex flex-wrap gap-2 mb-3">
+                                        <span class="text-muted"><i class="far fa-calendar me-1"></i> 01/05/2023 - 30/09/2023</span>
+                                        <span class="text-muted"><i class="fas fa-money-bill-wave me-1"></i> 1,200,000,000 FCFA</span>
+                                    </div>
+                                    <p>Construction de la structure de la route incluant les couches de fondation, la couche de base et la couche de roulement. 65% des travaux sont déjà réalisés avec un avancement conforme au planning.</p>
+                                    
+                                    <div class="progress-steps mt-4">
+                                        <div class="progress-step completed">
+                                            <strong>Préparation de la plateforme</strong>
+                                            <p class="mb-0 text-muted small">Terminé le 15/05/2023</p>
+                                        </div>
+                                        <div class="progress-step completed">
+                                            <strong>Mise en place des couches de fondation</strong>
+                                            <p class="mb-0 text-muted small">Terminé le 30/06/2023</p>
+                                        </div>
+                                        <div class="progress-step current">
+                                            <strong>Construction de la couche de base</strong>
+                                            <p class="mb-0 text-muted small">En cours - 75% réalisé</p>
+                                        </div>
+                                        <div class="progress-step">
+                                            <strong>Couche de roulement</strong>
+                                            <p class="mb-0 text-muted small">Prévu pour 15/08/2023</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Phase 3 -->
+                            <div class="timeline-item">
+                                <div class="timeline-dot bg-secondary">
+                                    <i class="fas fa-traffic-light"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="mb-0">Phase 3: Équipements et signalisation</h5>
+                                        <span class="badge bg-secondary">Planifié</span>
+                                    </div>
+                                    <div class="d-flex flex-wrap gap-2 mb-3">
+                                        <span class="text-muted"><i class="far fa-calendar me-1"></i> 01/10/2023 - 15/11/2023</span>
+                                        <span class="text-muted"><i class="fas fa-money-bill-wave me-1"></i> 500,000,000 FCFA</span>
+                                    </div>
+                                    <p>Installation de la signalisation verticale et horizontale, des glissières de sécurité et des équipements de contrôle. Cette phase inclura également la mise en place des systèmes de drainage.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Phase 4 -->
+                            <div class="timeline-item">
+                                <div class="timeline-dot bg-warning">
+                                    <i class="fas fa-check-double"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="mb-0">Phase 4: Réception et inauguration</h5>
+                                        <span class="badge bg-warning text-dark">Planifié</span>
+                                    </div>
+                                    <div class="d-flex flex-wrap gap-2 mb-3">
+                                        <span class="text-muted"><i class="far fa-calendar me-1"></i> 16/11/2023 - 30/11/2023</span>
+                                        <span class="text-muted"><i class="fas fa-money-bill-wave me-1"></i> 300,000,000 FCFA</span>
+                                    </div>
+                                    <p>Tests finaux, réception des travaux par les autorités et cérémonie d'inauguration officielle. Cette phase inclura également la remise des documents finaux et des garanties.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Documents Tab -->
+                    <div class="tab-pane fade" id="documents" role="tabpanel">
+                        <h4 class="mb-4"><i class="fas fa-file-alt me-2"></i>Documents du Projet</h4>
+                        
+                        <div class="row">
+                            <!-- Contract Documents -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100 document-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><i class="fas fa-file-contract me-2"></i>Documents Contractuels</h5>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Contrat principal
+                                                <a href="#" class="badge bg-primary rounded-pill"><i class="fas fa-download me-1"></i></a>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Cahier des charges
+                                                <a href="#" class="badge bg-primary rounded-pill"><i class="fas fa-download me-1"></i></a>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Plan de financement
+                                                <a href="#" class="badge bg-primary rounded-pill"><i class="fas fa-download me-1"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Technical Documents -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100 document-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><i class="fas fa-file-code me-2"></i>Documents Techniques</h5>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Étude d'impact environnemental
+                                                <a href="#" class="badge bg-primary rounded-pill"><i class="fas fa-download me-1"></i></a>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Plans d'exécution
+                                                <a href="#" class="badge bg-primary rounded-pill"><i class="fas fa-download me-1"></i></a>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Spécifications techniques
+                                                <a href="#" class="badge bg-primary rounded-pill"><i class="fas fa-download me-1"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Financial Documents -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100 document-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><i class="fas fa-file-invoice-dollar me-2"></i>Documents Financiers</h5>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Décaissement #1 - 15/04/2023
+                                                <a href="#" class="badge bg-primary rounded-pill"><i class="fas fa-download me-1"></i></a>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Décaissement #2 - 30/06/2023
+                                                <a href="#" class="badge bg-primary rounded-pill"><i class="fas fa-download me-1"></i></a>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Rapport financier intermédiaire
+                                                <a href="#" class="badge bg-primary rounded-pill"><i class="fas fa-download me-1"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Reports -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100 document-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><i class="fas fa-clipboard-check me-2"></i>Rapports d'Avancement</h5>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Rapport mensuel - Mai 2023
+                                                <a href="#" class="badge bg-primary rounded-pill"><i class="fas fa-download me-1"></i></a>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Rapport mensuel - Juin 2023
+                                                <a href="#" class="badge bg-primary rounded-pill"><i class="fas fa-download me-1"></i></a>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Rapport trimestriel Q2 2023
+                                                <a href="#" class="badge bg-primary rounded-pill"><i class="fas fa-download me-1"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Reports Tab -->
+                    <div class="tab-pane fade" id="reports" role="tabpanel">
+                        <h4 class="mb-4"><i class="fas fa-exclamation-triangle me-2"></i>Signalements des Citoyens</h4>
+                        
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="card-title mb-0">Nouveau signalement</h5>
+                                    <button class="btn btn-primary btn-sm">
+                                        <i class="fas fa-plus me-1"></i> Ajouter un signalement
+                                    </button>
+                                </div>
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="reportText" class="form-label">Description du problème</label>
+                                        <textarea class="form-control" id="reportText" rows="3" placeholder="Décrivez le problème observé..."></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="reportPhoto" class="form-label">Photo (optionnelle)</label>
+                                        <input class="form-control" type="file" id="reportPhoto">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Envoyer le signalement</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">Dégradation de la chaussée</h5>
+                                    <small class="text-success">Résolu</small>
+                                </div>
+                                <p class="mb-1">Signalé par: Jean Mbarga</p>
+                                <small class="text-muted">15/06/2023</small>
+                                <p class="mt-2">Une partie de la chaussée récemment construite montre des signes de dégradation près du kilomètre 12. Des fissures sont visibles sur environ 50m.</p>
+                                <div class="d-flex gap-2">
+                                    <span class="badge bg-light text-dark"><i class="fas fa-image me-1"></i> 2 photos</span>
+                                </div>
+                            </div>
+                            
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">Problème de drainage</h5>
+                                    <small class="text-primary">En cours de traitement</small>
+                                </div>
+                                <p class="mb-1">Signalé par: Anonyme</p>
+                                <small class="text-muted">05/07/2023</small>
+                                <p class="mt-2">L'eau stagne sur la route au niveau du kilomètre 8 après chaque pluie, créant un danger pour les usagers et risquant d'endommager la chaussée.</p>
+                                <div class="d-flex gap-2">
+                                    <span class="badge bg-light text-dark"><i class="fas fa-image me-1"></i> 1 photo</span>
+                                </div>
+                            </div>
+                            
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">Signalisation manquante</h5>
+                                    <small class="text-warning">Nouveau</small>
+                                </div>
+                                <p class="mb-1">Signalé par: Marie Ngo</p>
+                                <small class="text-muted">20/07/2023</small>
+                                <p class="mt-2">Absence de panneaux de signalisation à l'intersection avec la route secondaire vers le village de Mbé, créant un risque d'accident.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column -->
+            <div class="col-lg-4">
+                <!-- Project Summary -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-info-circle me-2"></i>Résumé du Projet</h5>
+                        <p class="card-text">Construction d'une route bitumée de 45km entre Ngaoundéré et Meiganga pour désenclaver la région et faciliter le transport des produits agricoles.</p>
+                        
+                        <div class="mb-3">
+                            <h6 class="mb-2"><i class="fas fa-bullseye me-2"></i>Objectifs</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check-circle text-success me-2"></i> Réduire le temps de trajet de 2h à 45min</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i> Désenclaver 15 villages</li>
+                                <li><i class="fas fa-spinner text-primary me-2"></i> Faciliter le transport des marchandises</li>
+                                <li><i class="fas fa-spinner text-primary me-2"></i> Réduire les accidents de 40%</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <h6 class="mb-2"><i class="fas fa-map-marked-alt me-2"></i>Localisation</h6>
+                            <div class="map-container mb-2">
+                                <!-- Placeholder for map -->
+                                <div class="w-100 h-100 d-flex align-items-center justify-content-center bg-light">
+                                    <i class="fas fa-map-marker-alt fa-3x text-muted"></i>
+                                </div>
+                            </div>
+                            <small class="text-muted">Coordonnées: 7.3210° N, 13.5837° E</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Team -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-users me-2"></i>Équipe du Projet</h5>
+                        
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-user-tie fa-2x bg-primary text-white p-2 rounded-circle"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-0">Ministère des Travaux Publics</h6>
+                                <small class="text-muted">Maître d'ouvrage</small>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-hard-hat fa-2x bg-warning text-white p-2 rounded-circle"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-0">Société Camerounaise des Routes (SCR)</h6>
+                                <small class="text-muted">Entrepreneur principal</small>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-eye fa-2x bg-info text-white p-2 rounded-circle"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-0">Bureau de Contrôle BEC</h6>
+                                <small class="text-muted">Contrôle technique</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Partners -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-handshake me-2"></i>Partenaires</h5>
+                        
+                        <div class="row">
+                            <div class="col-6 mb-3 text-center">
+                                <img src="https://via.placeholder.com/100" class="partner-logo mb-2" alt="Banque Mondiale">
+                                <h6 class="mb-0">Banque Mondiale</h6>
+                                <small class="text-muted">Financier</small>
+                            </div>
+                            <div class="col-6 mb-3 text-center">
+                                <img src="https://via.placeholder.com/100" class="partner-logo mb-2" alt="AFD">
+                                <h6 class="mb-0">Agence Française de Développement</h6>
+                                <small class="text-muted">Financier</small>
+                            </div>
+                            <div class="col-6 mb-3 text-center">
+                                <img src="https://via.placeholder.com/100" class="partner-logo mb-2" alt="CET">
+                                <h6 class="mb-0">CET Engineering</h6>
+                                <small class="text-muted">Technique</small>
+                            </div>
+                            <div class="col-6 mb-3 text-center">
+                                <img src="https://via.placeholder.com/100" class="partner-logo mb-2" alt="Transcam">
+                                <h6 class="mb-0">Transcam</h6>
+                                <small class="text-muted">Logistique</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Notifications -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-bell me-2"></i>Dernières Notifications</h5>
+                        
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">Rapport financier approuvé</h6>
+                                    <small class="text-muted">Aujourd'hui</small>
+                                </div>
+                                <p class="mb-1 small">Le rapport financier du 2ème trimestre a été approuvé par le comité de suivi.</p>
+                                <small><i class="fas fa-envelope me-1"></i> Email</small>
+                            </div>
+                            
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">Visite de chantier prévue</h6>
+                                    <small class="text-muted">Hier</small>
+                                </div>
+                                <p class="mb-1 small">Une visite de chantier est prévue le 25/07/2023 avec les représentants des bailleurs.</p>
+                                <small><i class="fas fa-sms me-1"></i> SMS</small>
+                            </div>
+                            
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">Nouveau signalement</h6>
+                                    <small class="text-muted">20/07/2023</small>
+                                </div>
+                                <p class="mb-1 small">Un citoyen a signalé un problème de signalisation au kilomètre 18.</p>
+                                <small><i class="fab fa-facebook-messenger me-1"></i> Messenger</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

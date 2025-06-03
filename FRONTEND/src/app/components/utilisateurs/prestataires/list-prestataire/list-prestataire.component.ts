@@ -114,8 +114,18 @@ export class ListPrestataireComponent implements OnInit{
   allerEdit(updateApprenantId:number):void{
     this.router.navigate([`/admin/apprenants/${updateApprenantId}/update/`])
   }
-  onDeleteApprenant(updateApprenantId:number):void{
-    this.router.navigate([`/admin/apprenants/${updateApprenantId}/update/`])
+
+
+  onDeletePrestataire(id: number): void {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cet apprenant ?')) {
+      this.listPrestataireService.deletePrestataire(id).subscribe(() => {
+        this.paginatePrestataires = this.paginatePrestataires.filter(pres => pres.id !== id);
+        this.totalPages = Math.ceil(this.paginatePrestataires.length / this.size);
+        this.page = Math.min(this.page, this.totalPages || 1);
+        this.updatePaginateprestataires();
+        this.loadPrestataires()
+      });
+    }
   }
 
 }

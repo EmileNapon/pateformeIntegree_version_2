@@ -1,0 +1,179 @@
+<div class="container">
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+      <mat-card class="section-card">
+        <mat-card-header>
+          <mat-card-title>Informations Générales du Projet</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="form-row">
+            <mat-form-field class="form-col">
+              <mat-label>Nom du projet</mat-label>
+              <input matInput formControlName="nom" placeholder="Ex: Réhabilitation de la RN4">
+              <mat-error *ngIf="projectForm.get('nom')?.hasError('required')">Ce champ est requis</mat-error>
+            </mat-form-field>
+            <mat-form-field class="form-col">
+              <mat-label>Code du projet</mat-label>
+              <input matInput formControlName="code_projet">
+              <mat-error *ngIf="projectForm.get('code_projet')?.hasError('required')">Ce champ est requis</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field class="form-col">
+              <mat-label>Début du tronçon</mat-label>
+              <input matInput formControlName="debut_troncon">
+            </mat-form-field>
+            <mat-form-field class="form-col">
+              <mat-label>Fin du tronçon</mat-label>
+              <input matInput formControlName="fin_troncon">
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field class="form-col">
+              <mat-label>Région</mat-label>
+              <input matInput formControlName="region">
+            </mat-form-field>
+            <mat-form-field class="form-col">
+              <mat-label>Latitude</mat-label>
+              <input matInput type="number" formControlName="latitude">
+            </mat-form-field>
+            <mat-form-field class="form-col">
+              <mat-label>Longitude</mat-label>
+              <input matInput type="number" formControlName="longitude">
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="section-card">
+        <mat-card-header>
+          <mat-card-title>Informations Techniques</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="form-row">
+            <mat-form-field class="form-col">
+              <mat-label>Type de travaux</mat-label>
+              <mat-select formControlName="type_travaux">
+                <mat-option value="rehabilitation">Réhabilitation</mat-option>
+                <mat-option value="construction">Construction nouvelle</mat-option>
+                <mat-option value="bitumage">Bitumage</mat-option>
+                <mat-option value="entretien">Entretien</mat-option>
+                <mat-option value="elargissement">Élargissement</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form-col">
+              <mat-label>Longueur du tronçon (km)</mat-label>
+              <input matInput type="number" formControlName="longueur_troncon">
+            </mat-form-field>
+            <mat-form-field class="form-col">
+              <mat-label>Largeur de la chaussée (m)</mat-label>
+              <input matInput type="number" formControlName="largeur_chaussee">
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field class="form-col">
+              <mat-label>Date de début</mat-label>
+              <input matInput [matDatepicker]="startPicker" formControlName="dateDebut">
+              <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+              <mat-datepicker #startPicker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="form-col">
+              <mat-label>Date de fin prévue</mat-label>
+              <input matInput [matDatepicker]="endPicker" formControlName="dateFin">
+              <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+              <mat-datepicker #endPicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field class="form-col">
+              <mat-label>Type de revêtement</mat-label>
+              <mat-select formControlName="type_revetement">
+                <mat-option value="bitume">Bitume</mat-option>
+                <mat-option value="laterite">Latérite</mat-option>
+                <mat-option value="beton">Béton</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field class="form-col">
+              <mat-label>Normes techniques</mat-label>
+              <textarea matInput formControlName="normes_techniques" rows="4"></textarea>
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="section-card">
+        <mat-card-header>
+          <mat-card-title>Acteurs du Projet</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="form-row">
+            <mat-form-field class="form-col">
+              <mat-label>Maître d'ouvrage</mat-label>
+              <input matInput formControlName="maitre_ouvrage">
+            </mat-form-field>
+            <mat-form-field class="form-col">
+              <mat-label>Bureau de contrôle</mat-label>
+              <input matInput formControlName="bureau_controle">
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field class="form-col">
+              <mat-label>Bailleur(s) de fonds</mat-label>
+              <textarea matInput formControlName="bailleurs" rows="2"></textarea>
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="section-card">
+        <mat-card-header>
+          <mat-card-title>Budget et Description</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="form-row">
+            <mat-form-field class="form-col">
+              <mat-label>Budget (FCFA)</mat-label>
+              <input matInput type="number" formControlName="budget">
+            </mat-form-field>
+            <mat-form-field class="form-col">
+              <mat-label>Statut</mat-label>
+              <mat-select formControlName="statut">
+                <mat-option value="planifie">Planifié</mat-option>
+                <mat-option value="en_cours">En cours</mat-option>
+                <mat-option value="termine">Terminé</mat-option>
+                <mat-option value="suspendu">Suspendu</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field class="form-col">
+              <mat-label>Objectifs du projet</mat-label>
+              <textarea matInput formControlName="objectifs" rows="3"></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field class="form-col">
+              <mat-label>Description détaillée</mat-label>
+              <textarea matInput formControlName="description" rows="4"></textarea>
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <div class="action-buttons">
+        <button mat-button type="button" (click)="resetForm()">Réinitialiser</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!projectForm.valid">
+          Enregistrer le projet
+        </button>
+      </div>
+    </form>
+  </div>

@@ -13,6 +13,7 @@ import * as bootstrap from 'bootstrap'; // Importer Bootstrap JS
 import { DetailProjetComponent } from '../../projets/detail-projet/detail-projet.component';
 import { CreateDecaissementComponent } from '../../decaissement/create-decaissement/create-decaissement.component';
 import { ListDecaissementComponent } from '../../decaissement/list-decaissement/list-decaissement.component';
+import { CreatePartenairesComponent } from '../../partenaires/create-partenaires/create-partenaires.component';
 
 
 
@@ -23,7 +24,7 @@ import { ListDecaissementComponent } from '../../decaissement/list-decaissement/
      ListAutoriteComponent, ListProjetsComponent,
      CreateProjetComponent,ListPrestataireComponent,
      ListCitoyenComponent, DetailProjetComponent,
-     CreateDecaissementComponent, ListDecaissementComponent],
+     CreateDecaissementComponent, ListDecaissementComponent, CreatePartenairesComponent],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css',
   standalone:true
@@ -40,6 +41,7 @@ export class AdminDashboardComponent implements AfterViewInit, OnInit{
   detailsProjetVisible=false
   ButtonCreateProjetVisible = false;
   vueEnsembeVisible:boolean=true
+  vuePartenaireVisible:boolean=false
   userInfo: { email: string | null, firstName: string | null, lastName: string | null, profilePic: string | null } | null = null;
   isDropdownOpen: boolean = false;
 
@@ -242,6 +244,20 @@ ngPrestatairesVisible():void {
   this.detailsProjetVisible=true
  
  }
+
+
+ ngVuePartenaireVisible():void{
+  this.vuePartenaireVisible=true
+  this.vueEnsembeVisible=false
+  this.autoritevisible=false
+  this.prestatairesVisible=false
+  this.citoyenVisible=false
+  this.projetListVisible=false
+  this.avisVisible=false
+  this.ButtonCreateProjetVisible =false
+  this.createProjetVisible = false;
+  this.detailsProjetVisible=false
+}
 
   //  ngGetCreateProjet(): void{
   //   this.router.navigate(['/plateforme-integree/create-projet']); 

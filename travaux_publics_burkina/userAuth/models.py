@@ -37,7 +37,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)  # Rendre l'email unique
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default="citizen")
     phone_number = models.CharField(max_length=20, blank=True)
-    profile_pic = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
+    profile_pic = models.ImageField(upload_to='profiles/', blank=True, null=True)
     is_verified = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
@@ -52,10 +52,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     # Attributs Prestataire
     nom_entreprise = models.CharField(max_length=100, blank=True, null=True)
     secteur_activite = models.CharField(max_length=100, blank=True, null=True)
+    date_inscription=models.DateTimeField(auto_now_add=True, null=True) 
+
+    quartier=models.CharField(max_length=100, blank=True, null=True)
+    ville=models.CharField(max_length=100, blank=True, null=True)
+    secteur=models.CharField(max_length=100, blank=True, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ["role"]  # 'role' doit être obligatoire lors de la création
-    date_inscription=models.DateTimeField(auto_now_add=True, null=True) 
+ 
     # Définit le gestionnaire
     objects = UserManager()
 

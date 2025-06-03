@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import CustomTokenObtainPairView, RegisterView, UserDetailView, list_users, AutoritesListView, UpdateUserView,PrestatairesListView, CitizensListView, AutoriteDetailView, PrestatairesDetailView
+from .views import CustomTokenObtainPairView, RegisterView, UserDetailView, list_users, AutoritesListView, UpdateUserView,PrestatairesListView, CitizensListView, AutoriteDetailView, PrestatairesDetailView, CitoyenDetailView, DeleteUserView
+
 
 urlpatterns = [
     path('plateforme-integre/login/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
@@ -14,5 +15,7 @@ urlpatterns = [
 
     path('plateforme-integre/autorites/<int:id>/', AutoriteDetailView.as_view(), name='apprenant-detail'),
      path('plateforme-integre/prestataires/<int:id>/', PrestatairesDetailView.as_view(), name='etudiant-list'),
+     path('plateforme-integre/citoyens/<int:id>/', CitoyenDetailView.as_view(), name='apprenant-detail'),
+     path('plateforme-integre/users/delete/<int:pk>/', DeleteUserView.as_view(), name='delete-user'),  # Suppression du compte utilisateur
 
 ]

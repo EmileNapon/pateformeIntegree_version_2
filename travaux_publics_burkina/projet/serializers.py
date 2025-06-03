@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Livrable, Projet, Partenaire, DetailsProjet, Localisation, ActeursImpliques, Decaissement, CitizenReport, Notification
+from .models import Livrable, Projet, Partenaire, ActeursImpliques, CitizenReport, Notification, PhaseProjet, EtapePhase
 
 class ProjetSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,30 +12,21 @@ class PartenaireSerializer(serializers.ModelSerializer):
         model = Partenaire
         fields = '__all__'
 
-class DetailsProjetSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = DetailsProjet
-        fields = '__all__'
 
-class LocalisationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Localisation
-        fields = '__all__'
 
 class ActeursImpliquesSerializer(serializers.ModelSerializer):
     class Meta:
         model = ActeursImpliques
         fields = '__all__'
 
-class DecaissementSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Decaissement
-        fields = '__all__'
+# class DecaissementSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Decaissement
+#         fields = '__all__'
 
 class LivrableSerializer(serializers.ModelSerializer):
     class Meta:
         model = Livrable
-
         fields = '__all__'
 
 class CitizenReportSerializer(serializers.ModelSerializer):
@@ -47,3 +38,16 @@ class NotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notification
         fields = '__all__'
+
+
+class PhaseProjetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PhaseProjet
+        fields = '__all__'
+
+class EtapePhaseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EtapePhase
+        fields = '__all__'
+
+
