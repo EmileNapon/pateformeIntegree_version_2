@@ -39,13 +39,13 @@
               </thead>
               <tbody>
                   <tr *ngFor="let projet of projets">
-                    <td>{{ projet.typeProjet }}</td>
+                    <td> projet.typeProjet </td>
                     <td>{{ projet.nom }}</td>
                       <td>Ouagadougou - Bobo-Dioulasso</td>
-                      <td><button (click)='getProjetDetail(projet.id)' class="status">planifier</button></td>
+                      <td><button (click)='getProjetDetail(5)' class="status">planifier</button></td>
                       <td><span class="status">{{ projet.statut }}</span></td>
                       <td >
-                        <button (click)='allerDetail(projet.id)' class="action-btn view-btn" style='padding-left:12px;'><i class="fas fa-eye"></i></button>
+                        <button (click)='allerDetail(2)' class="action-btn view-btn" style='padding-left:12px;'><i class="fas fa-eye"></i></button>
                         <button  class="action-btn edit-btn" style='padding-left:12px;'><i class="fas fa-edit"></i></button>
                         <button class="action-btn delete-btn" style='padding-left:12px;'><i class="fas fa-trash"></i></button>
                     </td>

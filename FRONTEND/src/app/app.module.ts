@@ -8,9 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateComponent } from './components/calendrier/create/create.component';
 import { ModelKNNClientComponent } from './model-knn-client/model-knn-client.component';
 
-import { Component } from '@angular/core';
-import { bootstrapApplication } from '@angular/platform-browser';
-import { provideAnimations } from '@angular/platform-browser/animations';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -21,9 +19,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
-import { App } from './x/x.component';
-import { MatOptionModule } from '@angular/material/core'; // parfois nécessaire selon les versions
-import { CreatevComponent } from './components/v/create/create.component';
+import { MatOptionModule } from '@angular/material/core'; 
+import { CreatevvComponent } from './components/v/create/create.component';
 import { TimelineComponent } from './compox/components/timeline/timeline.component';
 import { PhaseListComponent } from './compox/components/phase-list/phase-list.component';
 import { PhaseFormComponent } from './compox/components/phase-form/phase-form.component';
@@ -33,11 +30,12 @@ import { LivrableListComponent } from './compox/components/livrable-list/livrabl
 import { LivrableFormComponent } from './compox/components/livrable-form/livrable-form.component';
 import { HeaderComponent } from './compox/components/header/header.component';
 import { DashboardComponent } from './compox/components/dashboard/dashboard.component';
+import { App } from './x/x.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, CreateComponent, ModelKNNClientComponent, App,CreatevComponent,
+  declarations: [AppComponent, CreateComponent, ModelKNNClientComponent, CreatevvComponent, App,
     TimelineComponent, PhaseListComponent, PhaseFormComponent, PhaseDetailComponent, PhaseCardComponent, LivrableListComponent, LivrableFormComponent, HeaderComponent, DashboardComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, MatCardModule,
     MatFormFieldModule,
@@ -48,6 +46,7 @@ import { DashboardComponent } from './compox/components/dashboard/dashboard.comp
     MatNativeDateModule,
     MatTableModule,
     MatTabsModule,
+    MatIconModule,
     MatIconModule,
     MatOptionModule,
   ],

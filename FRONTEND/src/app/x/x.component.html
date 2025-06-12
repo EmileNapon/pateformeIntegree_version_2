@@ -1,5 +1,5 @@
 <div class="container">
-    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="projectForm" >
       <mat-card class="section-card">
         <mat-card-header>
           <mat-card-title>Informations Générales du Projet</mat-card-title>
@@ -122,13 +122,17 @@
               <input matInput formControlName="bureau_controle">
             </mat-form-field>
           </div>
-
           <div class="form-row">
+            <mat-form-field class="form-col">
+              <mat-label>prestataire</mat-label>
+              <input matInput formControlName="prestataire">
+            </mat-form-field>
             <mat-form-field class="form-col">
               <mat-label>Bailleur(s) de fonds</mat-label>
               <textarea matInput formControlName="bailleurs" rows="2"></textarea>
             </mat-form-field>
           </div>
+
         </mat-card-content>
       </mat-card>
 
@@ -155,23 +159,58 @@
 
           <div class="form-row">
             <mat-form-field class="form-col">
-              <mat-label>Objectifs du projet</mat-label>
-              <textarea matInput formControlName="objectifs" rows="3"></textarea>
-            </mat-form-field>
-          </div>
-
-          <div class="form-row">
-            <mat-form-field class="form-col">
               <mat-label>Description détaillée</mat-label>
               <textarea matInput formControlName="description" rows="4"></textarea>
             </mat-form-field>
           </div>
+         
         </mat-card-content>
       </mat-card>
 
+      <mat-card class="section-card">
+        <mat-card-header>
+          <mat-card-title>Plan directeur du projet</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="form-row">
+            <button mat-raised-button color="primary" (click)="planDirecteurInput.click()">Choisir un fichier</button>
+            <span *ngIf="plan_directeur">{{ plan_directeur.name }}</span>
+            <input #planDirecteurInput type="file" hidden (change)="onPlanDirecteurSelected($event)" />
+          </div>   
+        </mat-card-content>
+      </mat-card>
+      
+      <mat-card class="section-card">
+        <mat-card-header>
+          <mat-card-title>Budget détaillé</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="form-row">
+            <button mat-raised-button color="primary" (click)="budgetDetailleInput.click()">Choisir un fichier</button>
+            <span *ngIf="budget_detaille">{{ budget_detaille.name }}</span>
+            <input #budgetDetailleInput type="file" hidden (change)="onBudgetDetailleSelected($event)" />
+          </div>   
+        </mat-card-content>
+      </mat-card>
+      
+      <mat-card class="section-card">
+        <mat-card-header>
+          <mat-card-title>Contrat principal</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="form-row">
+            <button mat-raised-button color="primary" (click)="contratPrincipalInput.click()">Choisir un fichier</button>
+            <span *ngIf="contrat_principal">{{ contrat_principal.name }}</span>
+            <input #contratPrincipalInput type="file" hidden (change)="onContratPrincipalSelected($event)" />
+          </div>   
+        </mat-card-content>
+      </mat-card>
+      
+
+
       <div class="action-buttons">
         <button mat-button type="button" (click)="resetForm()">Réinitialiser</button>
-        <button mat-raised-button color="primary" type="submit" [disabled]="!projectForm.valid">
+        <button mat-raised-button color="primary" (click)='onSubmit()' [disabled]="!projectForm.valid">
           Enregistrer le projet
         </button>
       </div>

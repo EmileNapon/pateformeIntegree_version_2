@@ -31,7 +31,6 @@ import { CreatePartenairesComponent } from './components/partenaires/create-part
 import { ListDecaissementComponent } from './components/decaissement/list-decaissement/list-decaissement.component';
 import { CreateDecaissementComponent } from './components/decaissement/create-decaissement/create-decaissement.component';
 import { CreateComponent } from './components/calendrier/create/create.component';
-import { CreatevComponent } from './components/v/create/create.component';
 import { ModelKNNClientComponent } from './model-knn-client/model-knn-client.component';
 import { App } from './x/x.component';
 import { DashboardComponent } from './compox/components/dashboard/dashboard.component';
@@ -39,6 +38,7 @@ import { PhaseListComponent } from './compox/components/phase-list/phase-list.co
 import { PhaseFormComponent } from './compox/components/phase-form/phase-form.component';
 import { PhaseDetailComponent } from './compox/components/phase-detail/phase-detail.component';
 import { TimelineComponent } from './compox/components/timeline/timeline.component';
+import { CreatevvComponent } from './components/v/create/create.component';
 
 
 
@@ -49,14 +49,14 @@ const routes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'phases', component: PhaseListComponent },
   { path: 'phases/new', component: PhaseFormComponent },
-  { path: 'phases/:id', component: PhaseDetailComponent },
+  { path: 'phases/:idPhase', component: PhaseDetailComponent },
   { path: 'phases/:id/edit', component: PhaseFormComponent },
   { path: 'timeline', component: TimelineComponent },
-  { path: '**', redirectTo: '' },
+  // { path: '**', redirectTo: '' },
   
 
   {path : 'x', component:App},
-  {path : 'calendrier1', component:CreatevComponent},
+  {path : 'h', component:CreatevvComponent},
       
   {path : 'model-prediction', component:ModelKNNClientComponent},
   

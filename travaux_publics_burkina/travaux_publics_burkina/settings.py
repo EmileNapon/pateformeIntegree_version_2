@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'userAuth',
     'projet',
-    'bryance'
+    # 'bryance'
 ]
 
 MIDDLEWARE = [
